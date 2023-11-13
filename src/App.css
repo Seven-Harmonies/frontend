@@ -1,124 +1,318 @@
+.body-container {
+  margin-top: 1px; 
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 10);
+  transition: 0.3s;
+  z-index: 1;
+  
+}
+
+.body-container p {
+  margin: 0; 
+}
+
+
+.App.toggleTheme {
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: 333;
+  color: #fff;
+}
+
+.App.light-theme {
+  background-image: "3.png";
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: #fff;
+  color: #333;
+}
+
 .App {
   font-family: sans-serif;
   text-align: center;
+  background-image: "3.png";
+  position: relative;
+}
+.titlu1 {
+  font-size: 30px;
+  font-weight: bold;
+  /* position: inherit; */
+  text-align: left;
+  /* top: 5%;
+  left: 0; */
+  color: rgb(233, 225, 225) ; 
+  padding: 10px; 
+  transition: transform 0.3s; /* Adaugă o tranziție de 0.3 secunde pentru proprietatea opacity */
 }
 
+.title {
+  font-size: 40px;
+  font-weight: bold;
+  color: white ; 
+  padding: 10px; 
+  margin-right: 600px;
+  transition: transform 0.3s; /* Adaugă o tranziție de 0.3 secunde pentru proprietatea opacity */
+}
+
+
+.title:hover {
+  transform: scale(1.2); /* Atunci când cursorul este peste titlu, acesta va crește la 1.2x mărime */
+}
 .navbar {
-  position: absolute;
+  display: flex;
+  justify-content: flex-end;
   background-color: #24252A;
   width: 100%;
-  height: 60px;
-  left: 0px;
-  top: 0px;
-}
-
-.loginicon {
-  position: absolute;
-  width: 80px;
-  text-decoration: none;
-  display: flex;
+  height: 90px;
   align-items: center;
-  justify-content: center;
-  font-weight: bolder;
-  color: black;
-  height: 40px;
-  left: 85%;
-  top: 10px;
-  background:#2bc6ff;
-  border-radius: 24px;
-  cursor: pointer;
-}
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100; /* Asigură că navbar-ul este afișat deasupra conținutului */
+  transition: top 0.3s; /* Adaugă o tranziție pentru o mișcare mai lină */
+  padding: 10px;
+  }
 
-.loginicon:hover{
-  color: white;
-}
+  .navbarrouter {
+    display: flex;
+    justify-content: space-between;
+    background-color: #0d0d0e;
+    width: 100%;
+    height: 80px;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100; /* Asigură că navbar-ul este afișat deasupra conținutului */
+    transition: top 0.3s; /* Adaugă o tranziție pentru o mișcare mai lină */
+    padding: 10px;
+  }
 
-.login-form{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
+  .navbarrouter .flex-section {
+    display: flex;
+    align-items: center;
+  }
 
-.form-box{
-  margin-top: 7vh;
-  opacity:80%;
-  background: black;
-  padding-right: 80px;
-  padding-left: 80px;
-  border-radius: 20px;
-  box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
-}
+  .navbarrouter ul {
+    list-style: none;
+    display: inline-flex;
+    font: bolder;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbarrouter li {
+    display: inline-flex;
+    font: bolder;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+  .navbarrouter a {
+    color: rgb(186, 178, 178);
+    font: bolder;
+    text-decoration: none;
+  }
+  
+  .navbarrouter a:hover {
+    text-decoration: underline;
+  }
 
-.login-text{
-  width: 100%;
-  color: white;
-  border-bottom: 2px solid white;
-  line-height: 30px;
-  width: 100%;
-  font-weight: bolder;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 5vh;
-}
+  .logo-image-router{
+  object-fit: cover;
+  width: 60px; /* Ajustează dimensiunile pentru cercul logo-ului */
+  height:60px;
+  
+  border-radius: 50%; /* Transformă div-ul într-un cerc */
+  overflow: hidden; /* Ascunde conținutul în afara cercului */
+  margin-right: 10px; /* Distanță între logo și titlu */
+  transition: transform 0.3s
 
-label {
-  color:white;
-  width: 100%;
-  text-align: center;
-}
+  }
 
-.login-box{
-  border: 1px solid lightgrey;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  padding: 2px;
-  padding-left: 10px;
-  letter-spacing: 1px;
-  font-weight: 600;
-  margin: 5px;
-  font-size: 11pt;
-  background: transparent;
-  transition: 1s;
-  outline: none;
-}
+  .logo-image {
+   
+  object-fit: cover; /* Asigură că imaginea se potrivește în cerc */
+  width: 70px; /* Ajustează dimensiunile pentru cercul logo-ului */
+  height:70px;
+  border-radius: 50%; /* Transformă div-ul într-un cerc */
+  overflow: hidden; /* Ascunde conținutul în afara cercului */
+  margin-right: 0px; /* Distanță între logo și titlu */
+  transition: transform 0.3s;
+  }
+  .logo-image:hover {
+    transform: rotate(360deg); /* La trecerea cursorului peste imagine, logo-ul va efectua o rotație de 360 de grade */
+  }
+  .text-white {
+    color: #fff;
+  }
+  
+  .text-black {
+    color: #000;
+  }
+  .dark-theme {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .light-theme {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .search-bar-dark {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .search-bar-light {
+    background-color: #fff;
+    color: #000;
+  }
+  .button-dark {
+    background-color: #333;
+    color: #fff;
+  
+  }
+  
+  .button-light {
+    background-color: #fff;
+    color: #000;
+  }
+  
+  
 
-.login-btn{
-  width: 75%;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(48,172,251);
-  color: white;
-  margin-top: 5px;
-  border-radius: 20px;
-  border: none;
-  font-size: 15pt;
-  font-weight: 700;
-  transition: 1s;
-  outline: none;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
-.login-btn:hover{
-  transform: scale(1.03);
-  letter-spacing: 4px;
-  background-color: #7FFFD4;
-  color: #1E90FF;
-}
-
-
+  .search-bar {
+    display: flex;
+    align-items: left;
+    background: white; 
+    border-radius: 25px; 
+    padding: 5px 10px;
+    
+  }
+  
+  .search-input {
+    border: none;
+    background-color: #fff;
+    width: 100px; 
+    padding: 5px;
+    font-size: 16px;
+    color: #333; 
+    outline: none; 
+  }
+  
+  .search-button {
+    background: #24252A; 
+    color: black;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 5px;
+    font-size: 16px;
+    cursor: pointer;
+    
+  }
+  .search-button:hover {
+    background: transparent;
+  }
+  
+  
+  .button {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bolder;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px; 
+    background: #24252A;
+    border-radius: 20px; 
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    margin-right: 0px;
+    border: none; /* Pentru a elimina bordura implicită a butoanelor */
+    outline: none;
+  }
+  .button:hover {
+  
+    background: #24252A;
+    transform: scale(1.05); /* Crește dimensiunea butonului */
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+  }
+  
+  .login-form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .form-box{
+    margin-top: 7vh;
+    opacity:80%;
+    background: black;
+    padding-right: 80px;
+    padding-left: 80px;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px 1px rgba(0, 0, 0, 0.2);
+  }
+  
+  label {
+    color:gray;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .login-box{
+    border: 1px solid lightgrey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    padding: 2px;
+    padding-left: 10px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 5px;
+    font-size: 11pt;
+    background: transparent;
+    transition: 1s;
+    outline: none;
+  }
+  .login-btn{
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+    background-color: black(48,172,251);
+    color: black;
+    margin-top: 5px;
+    border-radius: 20px;
+    border: none;
+    font-size: 10pt;
+    font-weight: 700;
+    transition: 1s;
+    outline: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .login-btn:hover{
+    transform: scale(1.03);
+    letter-spacing: 4px;
+    background-color: gray;
+    color: white;
+  }
+  
+  
 .openModal {
   width: 75%;
   justify-content: center;
   align-items: center;
-  background-color: rgb(48,172,251);
-  color: white;
+  background-color: gray(48,172,251);
+  color: gray;
   margin-top: 5px;
   border-radius: 20px;
   border: none;
@@ -130,36 +324,37 @@ label {
   margin-bottom: 20px;
 }
 
-.closeModal {
-  width: 75%;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(48,172,251);
-  color: white;
-  margin-top: 5px;
-  border-radius: 20px;
-  border: none;
-  font-size: 15pt;
-  font-weight: 700;
-  transition: 1s;
-  outline: none;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
 .modal {
   position: relative;
   max-width: 20rem;
   padding: 2rem;
   border: 0;
   border-radius: 0.5rem;
-  box-shadow: 0 0 0.5rem 0.25rem hsl(0 0% 0% / 10%);
+  box-shadow: 0 0 1rem 0.25rem hsla(0, 0%, 0%, 0.9);
+  display: block;
+}
+.closeModal {
+  width: 75%;
+  justify-content: center;
+  align-items: center;
+  background-color: white(48, 172, 251);
+  color: black;
+  margin-top: 5px;
+  border-radius: 20px;
+  border: none;
+  font-size: 15pt;
+  font-weight: 700;
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.3s, transform 0.3s, color 0.3s;
 }
 
-.closeModal:hover{
-  transform: scale(1.03);
-  letter-spacing: 4px;
-  background-color: #7FFFD4;
-  color: #1E90FF;
+.closeModal:hover {
+  background-color: gray;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
 }
 
 .show {
@@ -171,4 +366,48 @@ label {
 .show.active {
   transform: translateY(100px) scale(0) rotateY(180deg);
   opacity: 0;
+} 
+
+.custom-select {
+  background-color: #24252A;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: bolder;
+  font-size: 16px;
+  height: 50px;
+  line-height: 50px;
+  padding: 5 5px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  -webkit-appearance: none; /* Elimină săgeata din butonul dropdown pe navigatoarele webkit (Chrome, Safari etc.) */
+  -moz-appearance: none; /* Elimină săgeata din butonul dropdown pe Mozilla Firefox */
+}
+
+.custom-select::-ms-expand {
+  display: none; /* Ascunde săgeata pe Internet Explorer */
+}
+
+.custom-select option {
+  background-color: #24252A;
+  border: none;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+  font-size: 16px;
+}
+
+.custom-select:focus {
+  outline: none; /* Elimină conturul la focalizare */
+}
+
+.image-carousel {
+  height: auto; /* Ajustează înălțimea la nevoie */
+}
+
+.page-layout {
+  margin-top: 80px;
 }
