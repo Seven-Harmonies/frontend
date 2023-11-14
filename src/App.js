@@ -9,6 +9,7 @@ import Body from "./Body";
 import ImageCarousel from "./components/ImageCarousel";
 import LoginForm from "./components/LoginForm";
 import Event1 from './components/events/Event1';
+import CategoryPage from './components/CategoryPage';
 
 export default function App() {
   const [currentContent, setCurrentContent] = useState("homepage");
@@ -27,6 +28,8 @@ export default function App() {
           <Route path="/homepage" element={<HomePage />} />
           <Route path="/resultspage" element={<ResultsPage />} />
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/" element={<NavbarRouter />} />
+        <Route path="/categories/:category" element={<CategoryPage />} />
         </Routes>
       </Router>
 

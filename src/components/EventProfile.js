@@ -3,6 +3,7 @@ import { Link as ReactRouterLink } from 'react-router-dom';
 import '../EventProfile.css';
 import { useState } from 'react';
 
+
 const EventProfile = ({ event }) => {
   const joinLink = `/evenimente/${event.name}`;
 
@@ -14,20 +15,15 @@ const EventProfile = ({ event }) => {
 
   const joinButtonText = isJoined ? 'Joined' : 'Join';
   const buttonClass = isJoined ? 'action-button joined' : 'action-button join';
-  //const joinLink = `/evenimente/${event.name}`;
-
-  /* <div className="event-details">
-          <div className="date">Date: {event.date}</div>
-          <div className="location">Location: {event.location}</div>
-        </div>
-     <div className="participants">Participants: {event.participants}</div>   
-  */
+  
 
   return (
     <div className="profile-page">
       <div className="cover-photo"></div>
       <div className="profile-content">
-        <div className="event-name">{event.name}</div>
+        <ReactRouterLink to={joinLink} className='event.name' >
+          {event.name}
+        </ReactRouterLink>
         <div className="event-details">
           <div className="date">Date: {event.date}</div>
           <div className="location">Location: {event.location}</div>
