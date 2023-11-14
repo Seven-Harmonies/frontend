@@ -59,8 +59,8 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
       <div className='flex-section'>
         <ul>
           <li><ReactRouterLink to="/homepage" target="_self">HomePage</ReactRouterLink></li>
-          <li><ReactRouterLink to="/resultspage" target="_self">ResultsPage</ReactRouterLink></li>
           <li><ReactRouterLink to="/evenimente" target="_self">Evenimente</ReactRouterLink></li>
+          
         </ul>
       </div>
 
@@ -85,13 +85,16 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
               ))}
             </div>
               )}*/}
+
           {/* Search suggestions */}
           {suggestions.length > 0 && (
             <SearchSuggestions suggestions={suggestions} onItemClick={handleSuggestionClick} />
           )}
+
           <button className="search-button" onClick={handleSearchClick}>
             Search
           </button>
+          
         </div>
         <ul>
           <li onClick={handleLoginClick}><ReactRouterLink to="/login" target="_self">Log in</ReactRouterLink></li>

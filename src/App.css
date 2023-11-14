@@ -405,7 +405,11 @@
 }
 
 .image-carousel {
-  height: auto; /* Ajustează înălțimea la nevoie */
+  max-width: 100%;
+  height: auto;
+  opacity: 1;
+  
+  
 }
 
 .page-layout {

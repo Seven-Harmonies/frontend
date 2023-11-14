@@ -1,4 +1,4 @@
-import img1 from "./images/7.jpg"
+//import img1 from "./images/7.jpg"
 //import img2 from "../components/events/images/8.jpg"*/
 
 //import img3 from "../components/3.png";
@@ -12,7 +12,7 @@ const AllEvents = [
       date: '25 Mai 2024',
       location: 'Alba-Iulia',
       description: 'Motto: "Un gest mic, un impact mare - plantați un copac astăzi!" Proiectul Orizont Verde reprezintă o inițiativă de voluntariat dedicată transformării comunității noastre într-un mediu mai verde și mai sănătos. În cadrul acestui eveniment de voluntariat, ne propunem să aducem împreună oameni pasionați de protejarea mediului înconjurător pentru a lucra în echipă și a realiza schimbări palpabile în comunitatea noastră.',
-      image:img1,
+      //image:img1,
       organizer:'lotto romania',
       category:'natura',
     },

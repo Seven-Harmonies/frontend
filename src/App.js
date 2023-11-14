@@ -26,7 +26,6 @@ export default function App() {
           <Route path="/evenimente" element={<EventsPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/homepage" element={<HomePage />} />
-          <Route path="/resultspage" element={<ResultsPage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/" element={<NavbarRouter />} />
         <Route path="/categories/:category" element={<CategoryPage />} />
