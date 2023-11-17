@@ -1,0 +1,106 @@
+/* EventDisplay.css */
+
+.event-display {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+  }
+  
+  .eventdisplay-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .productdisplay-img-list {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    margin-top:50px
+  }
+  
+  .productdisplay-img-list img {
+    max-width: 70px;
+    height: auto;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .productdisplay-img-list img:hover {
+    opacity: 0.7;
+  }
+  
+  .eventdisplay-img {
+    margin-bottom: 15px;
+  }
+  
+  .eventdisplay-main-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .eventdisplay-right {
+    flex: 1;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    color: #666;
+  }
+  
+  .action-button {
+    padding: 12px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-button:hover {
+    background-color: #2980b9;
+  }
+  
+  .joined {
+    background-color: #2ecc71;
+  }
+/* EventDisplay.css */
+
+/* Restul stilurilor rămân neschimbate */
+
+.thumbnail {
+    max-width: 10px;
+    height: auto;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .thumbnail:hover {
+    opacity: 0.7;
+  }
+  
+  .active-thumbnail {
+    border: 2px solid #3498db;
+  }
+    

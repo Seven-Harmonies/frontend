@@ -1,9 +1,5 @@
-//import img1 from "./images/7.jpg"
-//import img2 from "../components/events/images/8.jpg"*/
 
-//import img3 from "../components/3.png";
-//import img4 from "../components/4.png";
-//import img5 from "../components/5.png";
+
 
 const AllEvents = [
     {
@@ -12,9 +8,10 @@ const AllEvents = [
       date: '25 Mai 2024',
       location: 'Alba-Iulia',
       description: 'Motto: "Un gest mic, un impact mare - plantați un copac astăzi!" Proiectul Orizont Verde reprezintă o inițiativă de voluntariat dedicată transformării comunității noastre într-un mediu mai verde și mai sănătos. În cadrul acestui eveniment de voluntariat, ne propunem să aducem împreună oameni pasionați de protejarea mediului înconjurător pentru a lucra în echipă și a realiza schimbări palpabile în comunitatea noastră.',
-      //image:img1,
+      images: ['/images/copaci.jpg','/images/planting.png','/images/planting2.png'],
       organizer:'lotto romania',
       category:'natura',
+      coverPhoto: "/images/copaci.jpg"
     },
     {
       id: 2,
@@ -22,10 +19,11 @@ const AllEvents = [
       date: '13 Martie 2024',
       location: 'Parcul Central, Cluj-Napoca',
       description: '"Fiecare palmă murdară este o investiție în frumusețea viitoare."',
-      //participants: 30,
-      //image:img2,
+      participants: 30,
+      images:[ '/images/curat.jpg','/images/clean.png','/images/clean2.png'],
       organizer:'nu se stie',
       category:'curatenie',
+      coverPhoto: "/images/curat.jpg"
     },
     {
       id: 3,
@@ -33,10 +31,12 @@ const AllEvents = [
       date: '20 februarie 2024',
       location: 'Cluj-Napoca',
       description: '"Fiecare copil merită șansa unei educații de calitate."',
-      //participants: 30,
-      //image:img3,
+      participants: 30,
+      images: ['/images/tutoriat.jpg','/images/turoring.png','/images/tutoring1.png'],
       organizer:'Rotaru SRL',
       category:'educatie',
+      coverPhoto: "/images/tutoriat.jpg"
+
     },
     {
       id: 4,
@@ -44,10 +44,11 @@ const AllEvents = [
       date: '15 aprilie 2024',
       location: 'Cluj-Napoca',
       description: '"Fiecare zâmbet aduce lumina în viața noastră."',
-      //participants: 30,
-      //image:img4,
+      participants: 30,
+      images:['/images/dizab.jpg','/images/diza1.png','/images/diza2.png'],
       organizer:"Asociatia Diversity",
       category:'diversitate',
+      coverPhoto: "/images/diza1.png"
     },
     {
       id: 5,
@@ -55,10 +56,11 @@ const AllEvents = [
       date: '3 iulie 2024',
       location: 'City Park',
       description: '"O simplă donație poate aduce bucurie în inimile celor aflați în nevoie."',
-      //participants: 30,
-      //image:img5,
+      participants: 30,
+      images: ['/images/10.jpg','/images/helping1.png','/images/poor.png'],
       organizer:'Alba-Ca-Zapada',
       category:"alimente",
+      coverPhoto: "/images/10.jpg"
     },
     // Adaugă alte evenimente aici
   ];

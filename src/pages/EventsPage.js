@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import EventProfile from '../components/EventProfile';
 import NavbarRouter from '../components/NavBarRouter';
 import events from '../components/events/AllEvents';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import EventDisplay from '../components/events/EventDisplay';
 
 
 
@@ -37,16 +38,24 @@ const EventsPage = () => {
       </div> */
 
 
-  return (
-    <div> <NavbarRouter toggleTheme={toggleTheme} darkTheme={darkTheme} onSearch={handleSearch} />
+ 
+    return (
+      <div>
+        
+        <NavbarRouter toggleTheme={toggleTheme} darkTheme={darkTheme} onSearch={handleSearch} />
     
-    <div className='page-layout'>
-      {events.map((event) => (
-        <EventProfile key={event.id} event={event} />
-      ))}
+        <div className='page-layout'>
+          {events.map((event) => (
+            <div key={event.name}>
+              <EventProfile event={event} />
+              
+             
+              
+
+            </div>
+          ))}
+        </div>
       </div>
-      
-    </div>
   );
 };
 
