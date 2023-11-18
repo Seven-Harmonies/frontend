@@ -415,3 +415,59 @@
 .page-layout {
   margin-top: 80px;
 }
+
+
+
+.filter-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-button {
+ 
+  color: rgb(14, 14, 14);
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px; /* Mărește dimensiunea textului, dacă este necesar */
+}
+
+.filter-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.filter-content div {
+  color: black;
+  padding: 12px 16px;
+  display: block;
+  cursor: pointer;
+}
+
+.sub-options {
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.sub-options div {
+  color: gray;
+  padding: 10px 16px;
+  display: block;
+  cursor: pointer;
+}
+
+.sub-options div:hover {
+  background-color: #eee;
+}
+
+.filter-content div:hover {
+  background-color: #ddd;
+}
+
+.filter-dropdown:hover .filter-content {
+  display: block;
+}

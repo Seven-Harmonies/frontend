@@ -5,6 +5,11 @@ import events from '../components/events/AllEvents';
 import { useLocation } from 'react-router-dom';
 
 const ResultsPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
   const [darkTheme, setDarkTheme] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredEvents, setFilteredEvents] = useState(null);

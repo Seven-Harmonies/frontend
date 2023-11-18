@@ -1,13 +1,15 @@
 // EventDisplay.js
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate} from 'react-router-dom';
 import AllEvents from './AllEvents';
 import './EventDisplay.css';
+import NavbarRouter from '../NavBarRouter';
 
 const EventDisplay = () => {
   const { name } = useParams();
   const lowercaseName = name.toLowerCase();
   const event = AllEvents.find((event) => event.name.toLowerCase() === lowercaseName);
+  const navigate = useNavigate();
 
   const [isJoined, setIsJoined] = useState(false);
   const [selectedImage, setSelectedImage] = useState(event?.images[0]);
@@ -19,12 +21,21 @@ const EventDisplay = () => {
   const handleThumbnailClick = (image) => {
     setSelectedImage(image);
   };
+   
+  const handleSearch = (term) => {
+    // Redirecționează utilizatorul către pagina de rezultate
+    navigate(`ResultsPage?search=${term}`);
+  };
+
 
   if (!event) {
     return <p>Evenimentul nu a fost găsit.</p>;
   }
 
   return (
+    <div>
+      <NavbarRouter onSearch={handleSearch} />
+    
     <div className="event-display">
       <div className="eventdisplay-left">
         <div className="productdisplay-img-list">
@@ -60,6 +71,7 @@ const EventDisplay = () => {
           {isJoined ? 'Joined' : 'Join'}
         </button>
       </div>
+    </div>
     </div>
   );
 };

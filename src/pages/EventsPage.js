@@ -9,6 +9,11 @@ import EventDisplay from '../components/events/EventDisplay';
 
 
 const EventsPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
   const [darkTheme, setDarkTheme] = useState(false);
   const navigate = useNavigate();
 

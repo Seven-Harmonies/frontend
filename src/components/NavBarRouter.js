@@ -3,6 +3,7 @@ import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 import logo from "./logo.jpg";
 import HomePage from '../pages/HomePage';
 import AllEvents from './events/AllEvents.js';
+import SearchOptions from './SearchOptions.js';
 import SearchSuggestions from './SearchSuggestions.js';
 
 
@@ -10,7 +11,10 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  //const [categorySuggestions, setCategorySuggestions] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [selectedSubOption, setSelectedSubOption] = useState(null);
+  const [options, setOptions] = useState(['Categorie', 'Data', 'Locație']);
+
 
   const handleLoginClick = () => {
     navigate('/login');
@@ -27,25 +31,24 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
 
     // Update search suggestions
     setSuggestions(filteredEvents);
-
-    // Extract unique categories from all events
-    //const uniqueCategories = [...new Set(AllEvents.map((event) => event.category))];
-
-    // Update category suggestions
-    //setCategorySuggestions(uniqueCategories);
   };
 
   const handleSearchClick = () => {
     onSearch(searchInput);
   };
 
- /* const handleCategorySuggestionClick = (category) => {
-    // Handle the selection of a category suggestion, e.g., navigate to the category page
-    navigate(`/categories/${category}`);
-  };*/
+  const handleFilterSelect = (filter) => {
+    setSelectedFilter(filter);
+    setSelectedSubOption(null); // Resetează sub-opțiunile atunci când se schimbă filtrele
+  };
+
+  const handleSubOptionSelect = (subOption) => {
+    setSelectedSubOption(subOption);
+    // Implementează logica necesară pentru filtrare în funcție de sub-opțiunea selectată
+    console.log(`Sub-opțiune selectată: ${subOption}`);
+  };
 
   const handleSuggestionClick = (selectedEvent) => {
-    // Handle the selection of a suggestion, e.g., navigate to the event page
     navigate(`/evenimente/${selectedEvent.name}`);
   };
 
@@ -91,9 +94,35 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
             <SearchSuggestions suggestions={suggestions} onItemClick={handleSuggestionClick} />
           )}
 
+          
+
           <button className="search-button" onClick={handleSearchClick}>
             Search
           </button>
+
+          {/* Butonul pentru dropdown */}
+          <div className="filter-dropdown">
+            <button className="filter-button">☰</button>
+            <div className="filter-content">
+              {/* Opțiuni pentru dropdown */}
+              <div onClick={() => handleFilterSelect('categorie')}>
+                Categorie
+                {selectedFilter === 'categorie' && (
+                  <div className="sub-options">
+                    <div onClick={() => handleSubOptionSelect('natura')}>Natura</div>
+                    <div onClick={() => handleSubOptionSelect('diversitate')}>Diversitate</div>
+                    <div onClick={() => handleSubOptionSelect('curatenie')}>Curățenie</div>
+                    {/* Alte opțiuni... */}
+                  </div>
+                )}
+              </div>
+              <div onClick={() => handleFilterSelect('data')}>Data</div>
+              <div onClick={() => handleFilterSelect('locatie')}>Locație</div>
+              {/* Alte opțiuni... */}
+            </div>
+          </div>
+          
+
           
         </div>
         <ul>

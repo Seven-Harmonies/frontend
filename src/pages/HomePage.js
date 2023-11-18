@@ -7,6 +7,11 @@ import EventsPage from './EventsPage';
 
 
 const HomePage = () =>{
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  
   const [darkTheme, setDarkTheme] = useState(false);
 
 
@@ -28,6 +33,7 @@ const HomePage = () =>{
     /*</div>
     <NavBar handleLoginClick={handleLoginClick} toggleTheme={toggleTheme} darkTheme={darkTheme}>
     <LoginForm isShowLogin={isShowLogin} />*/
+    
     <div className={'App ${darkTheme ? "dark-theme" : "light-theme"}'}>
     <div>
     <NavbarRouter toggleTheme={toggleTheme} darkTheme={darkTheme}  />
