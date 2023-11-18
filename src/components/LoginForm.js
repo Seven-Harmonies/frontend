@@ -1,7 +1,7 @@
 // LoginForm.tsx
 import React, { useState } from 'react';
-import handleLogin from './LoginHandler.ts';
-import handleSignUp from './SignupHandler.ts';
+import handleLogin from './handlers/LoginHandler.ts';
+import handleSignUp from './handlers/SignupHandler.ts';
 
 const LoginForm = ({ isShowLogin }) => {
   const [username, setUsername] = useState('');
@@ -26,6 +26,7 @@ const LoginForm = ({ isShowLogin }) => {
   };
 
   const openSignUpModal = () => {
+    console.log("ceva");
     setShowSignUpModal(true);
     setShowVolunteerModal(false); // Close the volunteer modal if it's open
     setShowOrganizationModal(false); // Close the organization modal if it's open
@@ -48,9 +49,10 @@ const LoginForm = ({ isShowLogin }) => {
   };
 
   const handleSignUpClick = async () => {
+    console.log("S-a apasat pe butonul de signup");
     try {
-      await handleSignUp(username, email, phoneNumber, password);
-      // You can perform additional actions after a successful signup if needed
+      const data = await handleSignUp(username, email, phoneNumber, password);
+      console.log("Datele primite: ", data);
     } catch (error) {
       // Handle errors from handleSignUp
       console.error('Error in handleSignUp:', error);

@@ -5,7 +5,7 @@ const handleLogin = async (username: string, password: string) => {
         username: username,
         password: password,
       };
-  
+      
       const response = await fetch('http://localhost:3000/user', {
         method: 'POST',
         headers: {
@@ -15,7 +15,7 @@ const handleLogin = async (username: string, password: string) => {
       });
   
       const data = await response.json();
-      // Handle the response from the server
+      
       console.log(data);
   
       // Return data or perform additional actions if needed
