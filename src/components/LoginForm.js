@@ -3,7 +3,9 @@ import React, { useState } from 'react';
 import handleLogin from './handlers/LoginHandler.ts';
 import handleSignUp from './handlers/SignupHandler.ts';
 
-const LoginForm = ({ isShowLogin }) => {
+const LoginForm = ({ isShowLogin , onLogin}) => {
+ 
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -37,13 +39,24 @@ const LoginForm = ({ isShowLogin }) => {
     setShowOrganizationModal(false);
     setShowSignUpModal(false);
   };
-
+  const handleLogin = async (username, password) => {
+    try {
+      // ... (codul existent)
+  
+      // Setează informații despre utilizator în localStorage
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', username);
+  
+      // ... (restul codului existent)
+    } catch (error) {
+      // ... (codul existent)
+    }
+  };
   const handleLoginClick = async () => {
     try {
       await handleLogin(username, password);
-      // You can perform additional actions after a successful login if needed
+      onLogin(username); // Apelează funcția onLogin cu numele utilizatorului
     } catch (error) {
-      // Handle errors from handleLogin
       console.error('Error in handleLogin:', error);
     }
   };

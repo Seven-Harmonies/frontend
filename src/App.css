@@ -471,3 +471,37 @@
 .filter-dropdown:hover .filter-content {
   display: block;
 }
+/* Stiluri CSS pentru componenta NavbarRouter */
+
+.greeting {
+  margin-right: 10px;
+  margin-top: 15px; /* Adaugă spațiu deasupra "greeting" */
+  margin-bottom: 5px; /* Adaugă spațiu sub "greeting" */
+  font-weight: bold;
+  color: #ffffff; /* Culoarea textului */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Umbră text */
+}
+
+.logout-button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: bolder;
+    color: white;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 15px; 
+    background: #24252A;
+    border-radius: 20px; 
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    margin-right: 0px;
+    border: none; /* Pentru a elimina bordura implicită a butoanelor */
+    outline: none;
+  }
+  .logout-button:hover {
+  
+    background: #24252A;
+    transform: scale(1.05); /* Crește dimensiunea butonului */
+    box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
+  }

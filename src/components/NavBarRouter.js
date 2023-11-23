@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as ReactRouterLink, useNavigate } from 'react-router-dom';
 import logo from "./logo.jpg";
 import HomePage from '../pages/HomePage';
@@ -8,16 +8,39 @@ import SearchSuggestions from './SearchSuggestions.js';
 
 
 const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
-  const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [selectedSubOption, setSelectedSubOption] = useState(null);
   const [options, setOptions] = useState(['Categorie', 'Data', 'Locație']);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+  
+  
+  useEffect(() => {
+    // Verifică dacă utilizatorul este autentificat la încărcarea componentei
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    const storedUsername = localStorage.getItem('username');
 
+    if (storedIsLoggedIn && storedUsername) {
+      setIsLoggedIn(true);
+      setUsername(storedUsername);
+    }
+  }, []);
+
+ 
 
   const handleLoginClick = () => {
     navigate('/login');
+  };
+  const handleLogoutClick = () => {
+    // Șterge informațiile despre utilizator din localStorage la deconectare
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    setIsLoggedIn(false);
+    setUsername('');
+    navigate('/'); // Întoarce utilizatorul la pagina principală după deconectare
   };
 
   const handleSearchChange = (event) => {
@@ -126,8 +149,15 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
           
         </div>
         <ul>
+        {isLoggedIn ? (
+           <li>
+            <span className="greeting">Hi, {username}! :) </span>
+      <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
+         </li>
+        ) : (
           <li onClick={handleLoginClick}><ReactRouterLink to="/login" target="_self">Log in</ReactRouterLink></li>
-        </ul>
+        )}
+      </ul>
 
         <span onClick={toggleTheme} className="button">
           💡
