@@ -5,6 +5,8 @@ import HomePage from '../pages/HomePage';
 import AllEvents from './events/AllEvents.js';
 import SearchOptions from './SearchOptions.js';
 import SearchSuggestions from './SearchSuggestions.js';
+import Chat from './Chat'; // Importați componenta Chat
+import FullScreenChat from './FullScreenChat';
 
 
 const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
@@ -16,19 +18,51 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+
+  const [profileImage, setProfileImage] = useState(null);
+  const [selectedOrganization, setSelectedOrganization] = useState(null);
+
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const handleOpenChat = () => {
+    setIsChatOpen(true);
+  };
+
+  const handleCloseChat = () => {
+    setIsChatOpen(false);
+  };
+
+
+const handleImageLoad = () => {
+  console.log('Imagine încărcată cu succes!');
+};
+
   
   
   useEffect(() => {
     // Verifică dacă utilizatorul este autentificat la încărcarea componentei
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     const storedUsername = localStorage.getItem('username');
+    const storedProfileImage = localStorage.getItem('profileImage');
 
-    if (storedIsLoggedIn && storedUsername) {
-      setIsLoggedIn(true);
-      setUsername(storedUsername);
+  if (storedIsLoggedIn && storedUsername) {
+    setIsLoggedIn(true);
+    setUsername(storedUsername);
+
+    if (storedProfileImage) {
+      setProfileImage(storedProfileImage);
     }
+  }
   }, []);
 
+  const handleOrganizationSelect = (organizationId) => {
+    // Implementează logica pentru gestionarea selecției organizației și deschiderea chat-ului
+    console.log(`Organizația selectată: ${organizationId}`);
+    setSelectedOrganization(organizationId);
+    setIsChatOpen(true);
+  };
+  
+  
  
 
   const handleLoginClick = () => {
@@ -74,6 +108,13 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
   const handleSuggestionClick = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.name}`);
   };
+
+  // Definirea manuală a organizațiilor
+  const organizations = [
+    { id: 'org1', name: 'Organization 1' },
+    { id: 'org2', name: 'Organization 2' },
+    // Adaugă oricâte organizații dorești
+  ];
 
   return (
     <div className="navbarrouter">
@@ -151,19 +192,52 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
         <ul>
         {isLoggedIn ? (
            <li>
+    
+            <div className="profile-section">
+            {profileImage && (
+        <img
+          src={profileImage}
+          alt="Profile"
+          className="profile-image"
+          onLoad={handleImageLoad}
+        />
+        
+      )}
+      
             <span className="greeting">Hi, {username}! :) </span>
-      <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
+            <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
+          </div>
+          <div>
+            {/* Adăugați iconița sau butonul de chat aici */}
+            {/* Puteți folosi o iconiță sau un buton pentru a deschide fereastra de chat */}
+            <button className="chat-button" onClick={() => handleOrganizationSelect(selectedOrganization)}>
+           🗨️ Chat
+            </button>
+            {/* Adăugare componenta FullScreenChat */}
+            {isChatOpen && (
+              <FullScreenChat
+                isLoggedIn={isLoggedIn}
+                organizations={organizations}
+                onClose={handleCloseChat}
+              />
+            )}
+          
+          </div>
          </li>
+         
         ) : (
           <li onClick={handleLoginClick}><ReactRouterLink to="/login" target="_self">Log in</ReactRouterLink></li>
+          
         )}
       </ul>
 
         <span onClick={toggleTheme} className="button">
           💡
         </span>
+      
       </div>
     </div>
+    
   );
 };
 

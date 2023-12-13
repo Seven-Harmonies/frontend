@@ -505,3 +505,10 @@
     transform: scale(1.05); /* Crește dimensiunea butonului */
     box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.3);
   }
+
+.profile-image {
+    width: 30px; /* Ajustați dimensiunea după necesități */
+    height: 30px;
+    border-radius: 50%; /* Pentru a face imaginea rotundă */
+    margin-left: 10px; /* Ajustați marginile după necesități */
+}

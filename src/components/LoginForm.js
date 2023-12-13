@@ -2,8 +2,10 @@
 import React, { useState } from 'react';
 import handleLogin from './handlers/LoginHandler.ts';
 import handleSignUp from './handlers/SignupHandler.ts';
+import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({ isShowLogin , onLogin}) => {
+
+const LoginForm = ({ isShowLogin , onLogin, onSignUp}) => {
  
 
   const [username, setUsername] = useState('');
@@ -14,6 +16,9 @@ const LoginForm = ({ isShowLogin , onLogin}) => {
   const [showVolunteerModal, setShowVolunteerModal] = useState(false);
   const [showOrganizationModal, setShowOrganizationModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [profileImage, setProfileImage] = useState(null);
+  const navigate = useNavigate()
+  
 
   const openVolunteerModal = () => {
     setShowVolunteerModal(true);
@@ -39,6 +44,37 @@ const LoginForm = ({ isShowLogin , onLogin}) => {
     setShowOrganizationModal(false);
     setShowSignUpModal(false);
   };
+
+
+
+// Exemplu simplu pentru handleSignUp
+const handleSignUp = async (username, email, phoneNumber, password) => {
+  try {
+    // Implementează logica de înregistrare aici
+    // Poate fi o solicitare către API pentru înregistrare
+    console.log('SignUp logic goes here:', username, email, phoneNumber, password);
+
+    // Setează informații despre utilizator în localStorage
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', username);
+
+    // Salvează imagine în localStorage la înregistrare, dacă este disponibilă
+    // Înlocuiește această linie cu logica ta de încărcare a imaginii pentru înregistrare
+    const fakeImageUrl = 'https://example.com/fake-image.jpg';
+    localStorage.setItem('profileImage', fakeImageUrl);
+
+    // Apelează funcția onSignUp pentru acțiunile după înregistrare
+    onSignUp();
+
+    // Navighează către o altă pagină după înregistrare
+    navigate('/success');
+  } catch (error) {
+    console.error('Error in handleSignUp:', error);
+    // Tratează orice erori care pot apărea în timpul înregistrării
+  }
+};
+
+
   const handleLogin = async (username, password) => {
     try {
       // ... (codul existent)
@@ -46,11 +82,27 @@ const LoginForm = ({ isShowLogin , onLogin}) => {
       // Setează informații despre utilizator în localStorage
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('username', username);
-  
-      // ... (restul codului existent)
-    } catch (error) {
-      // ... (codul existent)
+      //localStorage.setItem('profileImage', profileImage ? URL.createObjectURL(profileImage) : '');
+
+      // Salvare imagine în localStorage la logare
+    if (profileImage) {
+      const imageUrl = URL.createObjectURL(profileImage);
+      localStorage.setItem('profileImage', imageUrl);
     }
+
+/*    const formData = new FormData();
+    formData.append('profileImage', profileImage);
+
+    await fetch('http://localhost:3000/upload', {
+      method: 'POST',
+      body: formData,
+    });*/
+
+    // ... (restul codului existent)
+  } catch (error) {
+    console.error('Eroare în handleLogin:', error);
+    // ... (codul existent)
+  }
   };
   const handleLoginClick = async () => {
     try {
@@ -62,13 +114,15 @@ const LoginForm = ({ isShowLogin , onLogin}) => {
   };
 
   const handleSignUpClick = async () => {
-    console.log("S-a apasat pe butonul de signup");
     try {
-      const data = await handleSignUp(username, email, phoneNumber, password);
-      console.log("Datele primite: ", data);
+      // Apelul la funcția de înregistrare (handleSignUp)
+      await handleSignUp(username, email, phoneNumber, password);
+  
+      // Apelează funcția onSignUp pentru acțiunile după înregistrare
+      onSignUp();
     } catch (error) {
-      // Handle errors from handleSignUp
-      console.error('Error in handleSignUp:', error);
+      console.error('Error in handleSignUpClick:', error);
+      // Tratează orice erori care pot apărea în timpul înregistrării
     }
   };
 
@@ -114,6 +168,11 @@ const LoginForm = ({ isShowLogin , onLogin}) => {
                 value="LOGIN"
                 className="login-btn"
                 onClick={handleLoginClick}
+              />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setProfileImage(e.target.files[0])}
               />
             </form>
             <button onClick={closeModal}>Close</button>
