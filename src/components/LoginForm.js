@@ -100,7 +100,7 @@ const SignUpOrganisationForm = ({ onCancel, onSubmit }) => {
     onSubmit();
   };
 
-  //org pot pune mai multe poze, desp prin ","
+  //org pot pune mai multe poze, desp prin "," nvm 
   const handlePhotoChange = (e) => {
     const photos = e.target.value.split(',');
     setPhotoesO(photos.map((photo) => photo.trim()));
