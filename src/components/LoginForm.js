@@ -67,11 +67,7 @@ const SignUpVolunteerForm = ({ onCancel, onSubmit }) => {
         <br />
         <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordV(e.target.value)} />
         <br />
-        <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setProfileImage(e.target.files[0])}
-              />
+        
         <button type="button" onClick={onCancel}>
           Cancel
         </button>
@@ -136,11 +132,7 @@ const SignUpOrganisationForm = ({ onCancel, onSubmit }) => {
       <br />
       <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordO(e.target.value)} />
       <br />
-      <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setProfileImage(e.target.files[0])}
-              />
+     
       <button type="button" onClick={onCancel}>
         Cancel
       </button>
