@@ -3,8 +3,182 @@ import React, { useState } from 'react';
 import handleLogin from './handlers/LoginHandler.ts';
 import handleSignUp from './handlers/SignupHandler.ts';
 import { useNavigate } from 'react-router-dom';
+import './LoginForm.css';
+
+// SIGN UP DE VOLUNTAR 
+const SignUpVolunteerForm = ({ onCancel, onSubmit }) => {
+  const [usernameV, setUsernameV]= useState('');
+  const [lastNameV, setLastNameV] = useState('');
+  const [firstNameV, setFirstNameV]=useState('');
+  const [emailV, setEmailV] = useState('');
+  const [phoneNumberV, setPhoneNumberV] = useState('');
+  const [passwordV, setPasswordV] = useState('');
+  const [repeatPasswordV, setRepeatPasswordV] = useState('');
+  const [photosV, setPhotosV]=useState([]);
+
+  //ce trb pt form de voluntari
+  const handleSignUpClick = () => {
+    console.log('Sign up as Volunteer:', { usernameV,lastNameV, firstNameV, emailV, phoneNumberV, passwordV, repeatPasswordV , photosV});
+    onSubmit();
+  };
+
+  //pt poza de profil dar am pus sa fie posibil de pus mai multe poze, desp prin ","
+  const handlePhotoChange = (e) => {
+    const photos = e.target.value.split(',');
+    setPhotosV(photos.map((photo) => photo.trim()));
+  };
+
+  return (
+    <div className="left-content">
+       <h2>Sign-Up as a Volunteer!</h2>
+       
+      <form>
+        <label>Username</label>
+        <br />
+        <input type="text" name="username" onChange={(e) => setUsernameV(e.target.value)} />
+        <br />
+
+        <label>Last Name</label>
+        <br />
+        <input type="text" name="lastname" onChange={(e) => setLastNameV(e.target.value)} />
+        <br />
+
+        <label>First Name</label>
+        <br />
+        <input type="text" name="firstname" onChange={(e) => setFirstNameV(e.target.value)} />
+        <br />
+
+        <label>Email</label>
+        <br />
+        <input type="email" name="email" onChange={(e) => setEmailV(e.target.value)} />
+        <br />
+        <label>Phone Number</label>
+        <br />
+        <input type="tel" name="phoneNumber" onChange={(e) => setPhoneNumberV(e.target.value)} />
+        <br />
+
+        
+        <label>Password</label>
+        <br />
+
+        <input type="password" name="password" onChange={(e) => setPasswordV(e.target.value)} />
+        <br />
+        <label>Repeat Password</label>
+        <br />
+        <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordV(e.target.value)} />
+        <br />
+        <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setProfileImage(e.target.files[0])}
+              />
+        <button type="button" onClick={onCancel}>
+          Cancel
+        </button>
+        <button type="button" onClick={handleSignUpClick}>
+          Submit
+        </button>
+      </form>
+      
+    </div>
+  );
+};
 
 
+//SIGN UP ORGANISATION FORM 
+const SignUpOrganisationForm = ({ onCancel, onSubmit }) => {
+  const [usernameO, setUsernameO] = useState('');
+  const [emailO, setEmailO] = useState('');
+  const [phoneNumberO, setPhoneNumberO] = useState('');
+  const [passwordO, setPasswordO] = useState('');
+  const [repeatPasswordO, setRepeatPasswordO] = useState('');
+  const [nameO, setNameO]=useState('');
+  const [photoesO, setPhotoesO] = useState([]);
+
+  const handleSignUpClick = () => {
+    console.log('Sign up as Organisation:', { usernameO, emailO, phoneNumberO, passwordO, repeatPasswordO,nameO , photoesO});
+    onSubmit();
+  };
+
+  //org pot pune mai multe poze, desp prin ","
+  const handlePhotoChange = (e) => {
+    const photos = e.target.value.split(',');
+    setPhotoesO(photos.map((photo) => photo.trim()));
+  };
+
+  return (
+    <div className="left-content">
+      <h3>Sign-Up as an Organization! </h3>
+  
+    <form>
+      <label>Username</label>
+      <br />
+      <input type="text" name="username" onChange={(e) => setUsernameO(e.target.value)} />
+      <br />
+      <label>Organisation name</label>
+      <br />
+      <input type="text" name="name" onChange={(e) => setNameO(e.target.value)} />
+      <br />
+      <label>Email</label>
+      <br />
+      <input type="email" name="email" onChange={(e) => setEmailO(e.target.value)} />
+      <br />
+      <label>Phone Number</label>
+      <br />
+      <input type="tel" name="phoneNumber" onChange={(e) => setPhoneNumberO(e.target.value)} />
+      <br />
+      
+      <label>Password</label>
+      <br />
+      <input type="password" name="password" onChange={(e) => setPasswordO(e.target.value)} />
+      <br />
+      <label>Repeat Password</label>
+      <br />
+      <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordO(e.target.value)} />
+      <br />
+      <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setProfileImage(e.target.files[0])}
+              />
+      <button type="button" onClick={onCancel}>
+        Cancel
+      </button>
+      <button type="button" onClick={ handleSignUpClick}>
+        Submit
+      </button>
+    </form>
+  </div>
+);
+};
+
+const SignUpForm = ({ signUpType, onCancel, onSubmit }) => {
+  const renderSignUpForm = () => {
+    if (signUpType === 'volunteer') {
+      return <SignUpVolunteerForm onCancel={onCancel} onSubmit={onSubmit} />;
+    } else if (signUpType === 'organisation') {
+      return <SignUpOrganisationForm onCancel={onCancel} onSubmit={onSubmit} />;
+    } else {
+      return (
+        <div className="left-half">
+          <div className="modal-title">Sign-Up as {typeof signUpType === 'string' ? signUpType.charAt(0).toUpperCase() + signUpType.slice(1) : ''}</div>
+          <p className="modal-text">Choose your role:</p>
+          <button onClick={() => handleSignUp('volunteer')}>Sign Up as Volunteer</button>
+          <button onClick={() => handleSignUp('organisation')}>Sign Up as Organization</button>
+          <button onClick={onCancel}>Cancel</button>
+        </div>
+      );
+    }
+  };
+
+  return (
+    <div>
+      {renderSignUpForm()}
+    </div>
+  );
+};
+
+//FORM DE LOGIN
 const LoginForm = ({ isShowLogin , onLogin, onSignUp}) => {
  
 
@@ -17,32 +191,51 @@ const LoginForm = ({ isShowLogin , onLogin, onSignUp}) => {
   const [showOrganizationModal, setShowOrganizationModal] = useState(false);
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [profileImage, setProfileImage] = useState(null);
+  const [signUpType, setSignUpType] = useState('');
+  const [showSignUpForm, setShowSignUpForm] = useState(false);
+  const [showVolunteerSignupPopup, setShowVolunteerSignupPopup] = useState(false);
+  const [showOrganisationSignupPopup, setShowOrganisationSignupPopup] = useState(false);
+
+
   const navigate = useNavigate()
   
 
   const openVolunteerModal = () => {
     setShowVolunteerModal(true);
-    setShowOrganizationModal(false); // Close the organization modal if it's open
-    setShowSignUpModal(false); // Close the sign-up modal if it's open
+    setShowOrganizationModal(false);
+    setShowSignUpModal(false);
+    setSignUpType('');
+    setShowVolunteerSignupPopup(false); // Close volunteer signup popup if open
+    setShowOrganisationSignupPopup(false); // Close organisation signup popup if open
   };
+
 
   const openOrganizationModal = () => {
     setShowOrganizationModal(true);
-    setShowVolunteerModal(false); // Close the volunteer modal if it's open
-    setShowSignUpModal(false); // Close the sign-up modal if it's open
+    setShowVolunteerModal(false);
+    setShowSignUpModal(false);
+    setSignUpType('');
+    setShowVolunteerSignupPopup(false); // Close volunteer signup popup if open
+    setShowOrganisationSignupPopup(false); // Close organisation signup popup if open
   };
 
-  const openSignUpModal = () => {
-    console.log("ceva");
+  const openSignUpModal = (type) => {
+    setSignUpType(type);
     setShowSignUpModal(true);
-    setShowVolunteerModal(false); // Close the volunteer modal if it's open
-    setShowOrganizationModal(false); // Close the organization modal if it's open
+    setShowSignUpForm(true); // Set to true to show the signup form initially
+    setShowVolunteerModal(false);
+    setShowOrganizationModal(false);
+    setShowVolunteerSignupPopup(false);
+    setShowOrganisationSignupPopup(false);
   };
 
   const closeModal = () => {
     setShowVolunteerModal(false);
     setShowOrganizationModal(false);
     setShowSignUpModal(false);
+    setSignUpType('');
+    setShowVolunteerSignupPopup(false);
+    setShowOrganisationSignupPopup(false);
   };
 
 
@@ -113,17 +306,17 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
     }
   };
 
-  const handleSignUpClick = async () => {
-    try {
-      // Apelul la funcția de înregistrare (handleSignUp)
-      await handleSignUp(username, email, phoneNumber, password);
-  
-      // Apelează funcția onSignUp pentru acțiunile după înregistrare
-      onSignUp();
-    } catch (error) {
-      console.error('Error in handleSignUpClick:', error);
-      // Tratează orice erori care pot apărea în timpul înregistrării
-    }
+  const handleSignUpClick = (type) => {
+    // Close the login modals
+    setShowVolunteerModal(false);
+    setShowOrganizationModal(false);
+
+    // Open the sign-up modal
+    setSignUpType(type);
+    setShowSignUpForm(false);
+    setShowSignUpModal(true);
+    setShowVolunteerSignupPopup(false);
+    setShowOrganisationSignupPopup(false);
   };
 
   return (
@@ -136,8 +329,8 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
           <button onClick={openOrganizationModal} className="closeModal">
             Log In as Organization
           </button>
-          <button onClick={openSignUpModal} className="closeModal">
-            Sign Up
+          <button onClick={() => openSignUpModal('')} className="closeModal">
+            Sign-Up
           </button>
         </div>
 
@@ -212,54 +405,24 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
           </div>
         )}
 
-        {showSignUpModal && (
-          <div className="modal">
-            <form>
-              <h1 className="login-text">Sign Up</h1>
-              <label>Username</label>
-              <br />
-              <input
-                type="text"
-                name="username"
-                className="login-box"
-                onChange={(e) => setUsername(e.target.value)}
-              />
-              <br />
-              <label>Email</label>
-              <br />
-              <input
-                type="text"
-                name="email"
-                className="login-box"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <br />
-              <label>Telephone Number</label>
-              <br />
-              <input
-                type="text"
-                name="phoneNumber"
-                className="login-box"
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-              <br />
-              <label>Password</label>
-              <br />
-              <input
-                type="password"
-                name="password"
-                className="login-box"
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              <br />
-              <input
-                type="submit"
-                value="SUBMIT"
-                className="login-btn"
-                onClick={handleSignUpClick}
-              />
-            </form>
-            <button onClick={closeModal}>Close</button>
+{showSignUpModal && (
+          <div className="full-screen-modal">
+            <div className="left-half">
+              {signUpType ? (
+                <SignUpForm signUpType={signUpType} onCancel={closeModal} onSubmit={() => setShowSignUpModal(false)} />
+              ) : (
+                <React.Fragment>
+                  <div className="modal-title">Sign-Up as {typeof signUpType === 'string' ? signUpType.charAt(0).toUpperCase() + signUpType.slice(1) : ''}</div>
+                  <p className="modal-text">Choose your role:</p>
+                  <button onClick={() => handleSignUpClick('volunteer')}>Sign-Up as Volunteer</button>
+                  <button onClick={() => handleSignUpClick('organisation')}>Sign-Up as Organization</button>
+                  <button onClick={closeModal}>Cancel</button>
+                </React.Fragment>
+              )}
+            </div>
+            <div className="right-half">
+              <img src="/images/9.jpg" alt="Your Photo" className="modal-photo" />
+            </div>
           </div>
         )}
       </div>
@@ -267,4 +430,5 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
   );
 };
 
-export default LoginForm;
+
+export default LoginForm; 
