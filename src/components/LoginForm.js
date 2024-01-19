@@ -30,52 +30,52 @@ const SignUpVolunteerForm = ({ onCancel, onSubmit }) => {
 
   return (
     <div className="left-content">
-       <h2>Sign-Up as a Volunteer!</h2>
-       
+      <h2>Sign-Up as a Volunteer!</h2>
+ 
       <form>
         <label>Username</label>
         <br />
-        <input type="text" name="username" onChange={(e) => setUsernameV(e.target.value)} />
+        <input type="text" name="username" onChange={(e) => setUsernameV(e.target.value)} style={{borderRadius: '5px'}} />
         <br />
-
+ 
         <label>Last Name</label>
         <br />
-        <input type="text" name="lastname" onChange={(e) => setLastNameV(e.target.value)} />
+        <input type="text" name="lastname" onChange={(e) => setLastNameV(e.target.value)} style={{borderRadius: '5px'}}/>
         <br />
-
+ 
         <label>First Name</label>
         <br />
-        <input type="text" name="firstname" onChange={(e) => setFirstNameV(e.target.value)} />
+        <input type="text" name="firstname" onChange={(e) => setFirstNameV(e.target.value)} style={{borderRadius: '5px'}}/>
         <br />
-
+ 
         <label>Email</label>
         <br />
-        <input type="email" name="email" onChange={(e) => setEmailV(e.target.value)} />
+        <input type="email" name="email" onChange={(e) => setEmailV(e.target.value)} style={{borderRadius: '5px'}}/>
         <br />
         <label>Phone Number</label>
         <br />
-        <input type="tel" name="phoneNumber" onChange={(e) => setPhoneNumberV(e.target.value)} />
+        <input type="tel" name="phoneNumber" onChange={(e) => setPhoneNumberV(e.target.value)} style={{borderRadius: '5px'}}/>
         <br />
-
-        
+ 
+ 
         <label>Password</label>
         <br />
-
-        <input type="password" name="password" onChange={(e) => setPasswordV(e.target.value)} />
+ 
+        <input type="password" name="password" onChange={(e) => setPasswordV(e.target.value)} style={{borderRadius: '5px'}}/>
         <br />
         <label>Repeat Password</label>
         <br />
-        <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordV(e.target.value)} />
+        <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordV(e.target.value)} style={{borderRadius: '5px'}}/>
         <br />
-        
-        <button type="button" onClick={onCancel}>
+ 
+        <button type="button" onClick={onCancel} style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginRight: '10px', borderRadius: '5px' }}>
           Cancel
         </button>
-        <button type="button" onClick={handleSignUpClick}>
+        <button type="button" onClick={handleSignUpClick} style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginRight: '10px', borderRadius: '5px' }}>
           Submit
         </button>
       </form>
-      
+ 
     </div>
   );
 };
@@ -105,44 +105,45 @@ const SignUpOrganisationForm = ({ onCancel, onSubmit }) => {
   return (
     <div className="left-content">
       <h3>Sign-Up as an Organization! </h3>
-  
-    <form>
-      <label>Username</label>
-      <br />
-      <input type="text" name="username" onChange={(e) => setUsernameO(e.target.value)} />
-      <br />
-      <label>Organisation name</label>
-      <br />
-      <input type="text" name="name" onChange={(e) => setNameO(e.target.value)} />
-      <br />
-      <label>Email</label>
-      <br />
-      <input type="email" name="email" onChange={(e) => setEmailO(e.target.value)} />
-      <br />
-      <label>Phone Number</label>
-      <br />
-      <input type="tel" name="phoneNumber" onChange={(e) => setPhoneNumberO(e.target.value)} />
-      <br />
-      
-      <label>Password</label>
-      <br />
-      <input type="password" name="password" onChange={(e) => setPasswordO(e.target.value)} />
-      <br />
-      <label>Repeat Password</label>
-      <br />
-      <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordO(e.target.value)} />
-      <br />
-     
-      <button type="button" onClick={onCancel}>
-        Cancel
-      </button>
-      <button type="button" onClick={ handleSignUpClick}>
-        Submit
-      </button>
-    </form>
-  </div>
-);
+ 
+      <form>
+        <label>Username</label>
+        <br />
+        <input type="text" name="username" onChange={(e) => setUsernameO(e.target.value)} style={{borderRadius: '5px'}}/>
+        <br />
+        <label>Organisation name</label>
+        <br />
+        <input type="text" name="name" onChange={(e) => setNameO(e.target.value)} style={{borderRadius: '5px'}}/>
+        <br />
+        <label>Email</label>
+        <br />
+        <input type="email" name="email" onChange={(e) => setEmailO(e.target.value)} style={{borderRadius: '5px'}}/>
+        <br />
+        <label>Phone Number</label>
+        <br />
+        <input type="tel" name="phoneNumber" onChange={(e) => setPhoneNumberO(e.target.value)} style={{borderRadius: '5px'}}/>
+        <br />
+ 
+        <label>Password</label>
+        <br />
+        <input type="password" name="password" onChange={(e) => setPasswordO(e.target.value)} style={{borderRadius: '5px'}}/>
+        <br />
+        <label>Repeat Password</label>
+        <br />
+        <input type="password" name="repeatPassword" onChange={(e) => setRepeatPasswordO(e.target.value)} style={{borderRadius: '5px'}}/>
+        <br />
+ 
+        <button type="button" onClick={onCancel} style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginRight: '10px', borderRadius: '5px' }}>
+          Cancel
+        </button>
+        <button type="button" onClick={handleSignUpClick} style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginRight: '10px', borderRadius: '5px' }}>
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 };
+ 
 
 const SignUpForm = ({ signUpType, onCancel, onSubmit }) => {
   const renderSignUpForm = () => {
@@ -329,7 +330,7 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
         {showVolunteerModal && (
           <div className="modal">
             <form>
-              <h1 className="login-text">Hello Volunteer!</h1>
+              <h1 className="login-text">Hello, Volunteer!</h1>
               <label>Username</label>
               <br />
               <input
@@ -350,9 +351,10 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
               <br />
               <input
                 type="submit"
-                value="LOGIN"
+                value="Log In"
                 className="login-btn"
                 onClick={handleLoginClick}
+                style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginLeft: '85px' }}
               />
               <input
                 type="file"
@@ -360,14 +362,14 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
                 onChange={(e) => setProfileImage(e.target.files[0])}
               />
             </form>
-            <button onClick={closeModal}>Close</button>
+            <button onClick={closeModal} style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginLeft: '95px', borderRadius: '5px', padding: '6px 12px'}}>Close</button>
           </div>
         )}
 
         {showOrganizationModal && (
           <div className="modal">
             <form>
-              <h1 className="login-text">Hello Organization!</h1>
+              <h1 className="login-text">Hello, Organisation!</h1>
               <label>Username</label>
               <br />
               <input
@@ -391,9 +393,10 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
                 value="LOGIN"
                 className="login-btn"
                 onClick={handleLoginClick}
+                style={{marginLeft: '85px'}}
               />
             </form>
-            <button onClick={closeModal}>Close</button>
+            <button onClick={closeModal} style={{ backgroundColor: 'rgb(54, 98, 51)', color: 'white', marginLeft: '95px', borderRadius: '5px', padding: '6px 12px'}}>Close</button>
           </div>
         )}
 
@@ -405,15 +408,14 @@ const handleSignUp = async (username, email, phoneNumber, password) => {
               ) : (
                 <React.Fragment>
                   <div className="modal-title">Sign-Up as {typeof signUpType === 'string' ? signUpType.charAt(0).toUpperCase() + signUpType.slice(1) : ''}</div>
-                  <p className="modal-text">Choose your role:</p>
-                  <button onClick={() => handleSignUpClick('volunteer')}>Sign-Up as Volunteer</button>
-                  <button onClick={() => handleSignUpClick('organisation')}>Sign-Up as Organization</button>
-                  <button onClick={closeModal}>Cancel</button>
+                  <button onClick={() => handleSignUpClick('volunteer')} style={{backgroundColor: 'rgb(54, 98, 51)', color: 'white', borderRadius: '5px'}}>Sign-Up as Volunteer</button>
+                  <button onClick={() => handleSignUpClick('organisation')} style={{backgroundColor: 'rgb(54, 98, 51)', color: 'white', borderRadius: '5px'}}>Sign-Up as Organization</button>
+                  <button onClick={closeModal} style={{backgroundColor: 'rgb(54, 98, 51)', color: 'white', borderRadius: '5px'}}>Cancel</button>
                 </React.Fragment>
               )}
             </div>
             <div className="right-half">
-              <img src="/images/9.jpg" alt="Your Photo" className="modal-photo" />
+              <img src="/images/forest3.jpg" alt="Your Photo" className="modal-photo" />
             </div>
           </div>
         )}

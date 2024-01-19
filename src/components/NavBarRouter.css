@@ -1,0 +1,273 @@
+.navbarrouter {
+  background-color: rgb(74, 134, 71);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:0 30px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  width: 95%;
+  height: 75px;
+  position: fixed;
+  top:20px;
+  left:50%;
+  transform: translate(-50%);
+  margin-left: 20px;
+  margin: 0 auto; /* Center the navbar on the screen */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+}
+
+.flex-section {
+  display: flex;
+  align-items: center; /* Center items vertically within the flex container */
+}
+
+.logo-image-router {
+  filter: invert(1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.titlu1 {
+  font-size:25px;
+  color: white;
+}
+
+.flex-section ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: #4b8f34;
+}
+
+.flex-section ul li {
+  margin-right: 20px;
+  border: #4b8f34;
+}
+
+
+.flex-section ul li:last-child {
+  margin-right: 0;
+  border: #4b8f34;
+}
+
+.flex-section ul li a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  font-size: 17px;
+  transition: font-size 0.3s ease;
+  border: darkolivegreen;
+}
+
+.flex-section ul li a:hover {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  height: 45px;
+  background-color: rgb(255, 255, 255);
+  margin-right: 50px;
+  margin-left: -10px;
+  position: relative; /* Add position relative to make it a reference for absolute positioning */
+}
+
+.search-input {
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.suggestion-section {
+  position: absolute;
+  top: calc(100% + 5px); /* Adjust the top position to make suggestions appear under the search bar with a small gap */
+  left: 0;
+  z-index: 1;
+  background-color: white;
+  color:gray;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.search-button {
+  padding: 8px 15px;
+  background-color: #c6cdcc;
+  color: rgb(82, 87, 87);
+  /*border: 1px solid  black; /* Set the border to black */
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: font-size 0.3s ease;
+}
+
+.search-button:hover{
+  transition: font-size 0.3s ease;
+  background-color: #dbe2e1;
+}
+
+.filter-dropdown {
+  position: relative;
+}
+
+.filter-button {
+  padding: 6px 12px;
+  background-color: #ffffff;
+  color: rgb(82, 87, 87);
+  /*border: 1px solid black; /* Set the border to black */
+  border-radius: 5px;
+  cursor: pointer;
+  height: 38px;
+  margin-right: 10px;
+}
+
+.filter-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.filter-dropdown:hover .filter-content {
+  display: block;
+}
+
+.filter-content div {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.sub-options {
+  margin-top: 5px;
+}
+
+.filter-option-button {
+  padding: 6px 12px;
+  background-color: #ffffff;
+  color: rgb(82, 87, 87);
+  border-radius: 5px;
+  cursor: pointer;
+  height: 38px;
+  margin-right: 10px;
+}
+
+.mini-search-input {
+  padding: 8px;
+  border: none;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.greeting {
+  font-size: 14px;
+}
+
+
+.login-button,
+.logout-button {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: rgba(54, 98, 51, 0.425);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  height: 45px;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 14px;
+  width: 92px;
+  font-size: 14px;
+  transition: font-size 0.3s ease;
+}
+
+.login-button:hover,
+.logout-button:hover {
+  text-decoration: none;
+  background-color: rgba(104, 185, 100, 0.664);
+  font-size: 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 6px 12px;
+}
+
+.chat-button {
+  text-decoration: none;
+  font-style: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: #4b8f34;
+  color: white;
+  border: none;
+  cursor: pointer;
+  height: 45px;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 15px;
+  width: 92px;
+  margin-right: 10px;
+  font-size: 17px;
+  transition: font-size 0.3s ease;
+}
+
+.chat-button:hover{
+  font-size: 18px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 6px 12px;
+  background-color: #63ab4b;
+  text-decoration: none;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6 6px;
+  background-color: white;
+  color: rgb(39, 78, 31);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 10px; 
+  margin-left: 10px; 
+}

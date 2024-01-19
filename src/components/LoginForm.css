@@ -108,3 +108,104 @@
       height: 100%;
     }
   }
+
+
+/* LOGIN POP UP*/
+.form-box {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 40%;
+  max-width: 800px;
+  height: 85%;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(74, 134, 71); /* White background with 0.9 opacity */
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+
+.form-box button {
+  margin: 10px 0;
+  padding: 12px 18px;
+  font-size: 16px;
+  transition: font-size 0.3s ease;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #ffffff; /* Set the background color as needed */
+  color: #4a5545; /* Set the text color as needed */
+}
+
+.form-box button:last-child {
+  margin-top: 10px;
+}
+
+.form-box button:hover {
+  background-color: #ffffff; /* Set the hover background color as needed */
+  color:rgba(74, 134, 71);
+  font-size: 17px;
+}
+
+/*LOGIN FORM*/
+/* Styles for login pop-ups */
+
+.modal{
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+
+.login-text{
+  font-size: 24px;
+  text-align: center; /* Center the text horizontally */
+  margin-top: 1px;
+  margin-bottom: 20px; /* Add top margin for spacing */
+}
+
+
+.login-box{
+  border-radius: 5px;
+  height: 30px;
+  width: 100%; /* Adjust the width as needed */
+  padding: 10px; /* Add padding for better appearance */
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.login-btn{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  background-color: rgb(54, 98, 51);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  height: 45px;
+  border-radius: 5px;
+  transition: color 0.3s;
+  font-size: 14px;
+  width: 92px;
+  font-size: 14px;
+  transition: font-size 0.3s ease;
+  left: 50px;
+}
+
+.login-btn:hover{
+  text-decoration: none;
+  background-color: rgb(104, 185, 100);
+  font-size: 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+  padding: 6px 12px;
+}
+
+
+

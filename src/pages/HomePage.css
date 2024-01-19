@@ -1,0 +1,53 @@
+
+
+.events-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+
+}
+
+.event-card {
+  display: flex;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  width:1000px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+.event-image {
+  width: 200px; /* Set the width as needed */
+  height: auto;
+  border-radius: 8px 0 0 8px;
+}
+
+.event-details {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  text-align: left;
+}
+
+.event-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgba(74, 134, 71);
+}
+
+.event-description {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.event-date {
+  color: #555;
+}

@@ -8,10 +8,10 @@ const AllEvents = [
       date: '25 Mai 2024',
       location: 'Alba-Iulia',
       description: 'Motto: "Un gest mic, un impact mare - plantați un copac astăzi!" Proiectul Orizont Verde reprezintă o inițiativă de voluntariat dedicată transformării comunității noastre într-un mediu mai verde și mai sănătos. În cadrul acestui eveniment de voluntariat, ne propunem să aducem împreună oameni pasionați de protejarea mediului înconjurător pentru a lucra în echipă și a realiza schimbări palpabile în comunitatea noastră.',
-      images: ['/images/copaci.jpg','/images/planting.png','/images/planting2.png'],
+      images: ['/images/copaci.jpg','/images/maini-planta.jpg','/images/planting2.png'],
       organizer:'lotto romania',
       category:'natura',
-      coverPhoto: "/images/copaci.jpg"
+      coverPhoto: "/images/copii-padure.jpg"
     },
     {
       id: 2,
@@ -20,10 +20,10 @@ const AllEvents = [
       location: 'Parcul Central, Cluj-Napoca',
       description: '"Fiecare palmă murdară este o investiție în frumusețea viitoare."',
       participants: 30,
-      images:[ '/images/curat.jpg','/images/clean.png','/images/clean2.png'],
+      images:[ '/images/curat-maini.jpg','/images/clean.png','/images/maini.jpg'],
       organizer:'nu se stie',
       category:'curatenie',
-      coverPhoto: "/images/curat.jpg"
+      coverPhoto: "/images/curat-doamna.jpg"
     },
     {
       id: 3,
@@ -32,7 +32,7 @@ const AllEvents = [
       location: 'Cluj-Napoca',
       description: '"Fiecare copil merită șansa unei educații de calitate."',
       participants: 30,
-      images: ['/images/tutoriat.jpg','/images/turoring.png','/images/tutoring1.png'],
+      images: ['/images/elevi-clasa.jpg','/images/discutie.jpg','/images/elevi.jpg'],
       organizer:'Rotaru SRL',
       category:'educatie',
       coverPhoto: "/images/tutoriat.jpg"
@@ -45,10 +45,10 @@ const AllEvents = [
       location: 'Cluj-Napoca',
       description: '"Fiecare zâmbet aduce lumina în viața noastră."',
       participants: 30,
-      images:['/images/dizab.jpg','/images/diza1.png','/images/diza2.png'],
+      images:['/images/diversitate-poster.jpg','/images/diza1.png','/images/diversitate-grupfete.jpg'],
       organizer:"Asociatia Diversity",
       category:'diversitate',
-      coverPhoto: "/images/diza1.png"
+      coverPhoto: "/images/diversitate-maini.jpg"
     },
     {
       id: 5,
@@ -57,7 +57,7 @@ const AllEvents = [
       location: 'City Park',
       description: '"O simplă donație poate aduce bucurie în inimile celor aflați în nevoie."',
       participants: 30,
-      images: ['/images/10.jpg','/images/helping1.png','/images/poor.png'],
+      images: ['/images/alimente-pungimancare.jpg','/images/alimente.jpg','/images/alimente-distribuire.jpg'],
       organizer:'Alba-Ca-Zapada',
       category:"alimente",
       coverPhoto: "/images/10.jpg"

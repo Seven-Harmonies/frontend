@@ -1,0 +1,7 @@
+/* EventsPage.css */
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
