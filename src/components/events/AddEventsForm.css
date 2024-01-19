@@ -1,0 +1,58 @@
+/* AddEventForm.css */
+
+/* Style for the form container */
+.form-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for form labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Style for form inputs */
+input,
+textarea,
+button,
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the submit button */
+button {
+    background-color: #4caf50;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Style for the close button */
+.close-button {
+    background-color: #ccc;
+    color: #333;
+}
+
+/* Style for the modal overlay */
+.ReactModal__Overlay {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
+}
+
+/* Style for the modal overlay when open */
+.ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+/* Style for the modal overlay when closed */
+.ReactModal__Overlay--before-close {
+    opacity: 0;
+}

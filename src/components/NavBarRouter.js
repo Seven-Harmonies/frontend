@@ -8,6 +8,7 @@ import SearchSuggestions from './SearchSuggestions.js';
 import Chat from './Chat'; // Importați componenta Chat
 import FullScreenChat from './FullScreenChat';
 import './NavBarRouter.css';
+import { isLoggedInAssociation, handleLoginAsAssociation } from './handlers/LoginHandlerAsAssociation.ts';
 
 
 const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
@@ -252,6 +253,11 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
           <li className="login-button">
             <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
           </li>
+          {isLoggedInAssociation && (
+            <li className="login-button">
+              <ReactRouterLink to="/addEvent" target="_self" className="login-link"> Add Events</ReactRouterLink>
+            </li>
+          )}
         </ul>
       </div>
 
