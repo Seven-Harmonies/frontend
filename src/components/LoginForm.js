@@ -1,7 +1,8 @@
 // LoginForm.tsx
 import React, { useState } from 'react';
-import handleLogin from './handlers/LoginHandler.ts';
 import handleSignUp from './handlers/SignupHandler.ts';
+import handleLoginAsVolunteer from './handlers/LoginHandlerAsVolunteer.ts'
+import handleLoginAsAssociation from './handlers/LoginHandlerAsAssociation.ts'
 
 const LoginForm = ({ isShowLogin }) => {
   const [username, setUsername] = useState('');
@@ -26,7 +27,6 @@ const LoginForm = ({ isShowLogin }) => {
   };
 
   const openSignUpModal = () => {
-    console.log("ceva");
     setShowSignUpModal(true);
     setShowVolunteerModal(false); // Close the volunteer modal if it's open
     setShowOrganizationModal(false); // Close the organization modal if it's open
@@ -38,17 +38,17 @@ const LoginForm = ({ isShowLogin }) => {
     setShowSignUpModal(false);
   };
 
-  const handleLoginClick = async () => {
+  const handleLoginClickAsVolunteer = (e) => {
     try {
-      
-    await handleLogin(username, password);
-    //console.log('Am ajuns aici cu usernameu: ', username, ' si parola: ', password);
-    //console.log(data);
-      
+      handleLoginAsVolunteer(username, password);
     } catch (error) {
-      // Handle errors from handleLogin
       console.error('Error in handleLogin:', error);
     }
+  };
+
+  const handleLoginClickAsAssociation = (e) => {
+    e.preventDefault();
+    handleLoginAsAssociation(username, password);
   };
 
   const handleSignUpClick = async () => {
@@ -103,7 +103,7 @@ const LoginForm = ({ isShowLogin }) => {
                 type="submit"
                 value="LOGIN"
                 className="login-btn"
-                onClick={handleLoginClick}
+                onClick={handleLoginClickAsVolunteer}
               />
             </form>
             <button onClick={closeModal}>Close</button>
@@ -136,7 +136,7 @@ const LoginForm = ({ isShowLogin }) => {
                 type="submit"
                 value="LOGIN"
                 className="login-btn"
-                onClick={handleLoginClick}
+                onClick={handleLoginClickAsAssociation}
               />
             </form>
             <button onClick={closeModal}>Close</button>

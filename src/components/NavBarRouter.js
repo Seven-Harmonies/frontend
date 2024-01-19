@@ -20,13 +20,15 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [miniSearchInput, setMiniSearchInput] = useState('');
-  
+
   const [showMiniSearch, setShowMiniSearch] = useState(false);
+
+  const [showUsername, setShowUsername] = useState(false);
 
 
   const [profileImage, setProfileImage] = useState(null);
   const [selectedOrganization, setSelectedOrganization] = useState(null);
-  const [showSuggestions, setShowSuggestions]=useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleCloseChat = () => {
@@ -34,27 +36,27 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
   };
 
 
-const handleImageLoad = () => {
-  console.log('Imagine încărcată cu succes!');
-};
+  const handleImageLoad = () => {
+    console.log('Imagine încărcată cu succes!');
+  };
 
-  
-  
-  useEffect(() => {
-    // Verifică dacă utilizatorul este autentificat la încărcarea componentei
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const storedUsername = localStorage.getItem('username');
-    const storedProfileImage = localStorage.getItem('profileImage');
 
-  if (storedIsLoggedIn && storedUsername) {
-    setIsLoggedIn(true);
-    setUsername(storedUsername);
 
-    if (storedProfileImage) {
-      setProfileImage(storedProfileImage);
-    }
-  }
-  }, []);
+  // useEffect(() => {
+  //   // Verifică dacă utilizatorul este autentificat la încărcarea componentei
+  //   // const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  //   // const storedUsername = localStorage.getItem('username');
+  //   // const storedProfileImage = localStorage.getItem('profileImage');
+
+  //   if (storedIsLoggedIn && storedUsername) {
+  //     setIsLoggedIn(true);
+  //     setUsername(storedUsername);
+
+  //     if (storedProfileImage) {
+  //       setProfileImage(storedProfileImage);
+  //     }
+  //   }
+  // }, []);
 
   const handleOrganizationSelect = (organizationId) => {
     // Implementează logica pentru gestionarea selecției organizației și deschiderea chat-ului
@@ -62,9 +64,9 @@ const handleImageLoad = () => {
     setSelectedOrganization(organizationId);
     setIsChatOpen(true);
   };
-  
-  
- 
+
+
+
 
   const handleLoginClick = () => {
     navigate('/login');
@@ -84,71 +86,71 @@ const handleImageLoad = () => {
   };
 
   //SEARCH DUPA NUME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
+
   const handleSearchChangeName = (event) => {
     const searchTerm = event.target.value;
     setSearchInput(searchTerm);
-  
+
     // Filter events based on the search term for name
     const filteredEvents = AllEvents.filter((event) =>
       event.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
   const handleSearchChangeDate = (event) => {
     const searchTerm = event.target.value;
     setSearchInput(searchTerm);
-  
+
     // Filter events based on the search term for date
     const filteredEvents = AllEvents.filter((event) =>
       event.date.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
   const handleSearchChangeLocation = (event) => {
     const searchTerm = event.target.value;
     setSearchInput(searchTerm);
-  
+
     // Filter events based on the search term for location
     const filteredEvents = AllEvents.filter((event) =>
       event.location.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
   const handleSearchChangeCategory = (event) => {
     const searchTerm = event.target.value;
     setSearchInput(searchTerm);
-  
+
     // Filter events based on the search term for category
     const filteredEvents = AllEvents.filter((event) =>
       event.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
 
 
 
@@ -183,7 +185,7 @@ const handleImageLoad = () => {
     setSelectedFilter(filter);
     setSelectedSubOption(null); // Resetează sub-opțiunile atunci când se schimbă filtrele
     setMiniSearchInput('');
-    setShowMiniSearch(true); 
+    setShowMiniSearch(true);
   };
 
   const handleSubOptionSelect = (subOption) => {
@@ -192,7 +194,7 @@ const handleImageLoad = () => {
     console.log(`Sub-opțiune selectată: ${subOption}`);
   };
 
-  const handleSuggestionClickName= (selectedEvent) => {
+  const handleSuggestionClickName = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.name}`);
     // Clear the search query and suggestions when an event is selected
     setSearchInput("");
@@ -201,7 +203,7 @@ const handleImageLoad = () => {
     setShowSuggestions(false);
   };
 
-  const handleSuggestionClickDate= (selectedEvent) => {
+  const handleSuggestionClickDate = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.date}`);
     // Clear the search query and suggestions when an event is selected
     setSearchInput("");
@@ -210,7 +212,7 @@ const handleImageLoad = () => {
     setShowSuggestions(false);
   };
 
-  const handleSuggestionClickCategory= (selectedEvent) => {
+  const handleSuggestionClickCategory = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.category}`);
     // Clear the search query and suggestions when an event is selected
     setSearchInput("");
@@ -219,7 +221,7 @@ const handleImageLoad = () => {
     setShowSuggestions(false);
   };
 
-  const handleSuggestionClickLocation= (selectedEvent) => {
+  const handleSuggestionClickLocation = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.location}`);
     // Clear the search query and suggestions when an event is selected
     setSearchInput("");
@@ -244,12 +246,12 @@ const handleImageLoad = () => {
 
       <div className='flex-section'>
         <ul>
-        <li className="login-button">
-  <ReactRouterLink to="/homepage" target="_self" className="login-link">Home</ReactRouterLink>
-</li>
-<li className="login-button">
-  <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
-</li>
+          <li className="login-button">
+            <ReactRouterLink to="/homepage" target="_self" className="login-link">Home</ReactRouterLink>
+          </li>
+          <li className="login-button">
+            <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
+          </li>
         </ul>
       </div>
 
@@ -261,154 +263,152 @@ const handleImageLoad = () => {
             className="search-input"
             value={searchInput}
             onChange={handleSearchChangeName}
-           
-          />
-          
 
-        {showSuggestions && suggestions.length > 0 && (
-          <div className="suggestion-section">
-            {suggestions.map((event) => (
-              <div
-                key={event.id}
-                className="suggestion-item"
-                onClick={() => handleSuggestionClickName(event)}
-              >
-                {event.name}
-              </div>
-            ))}
-          </div>
-        )}
+          />
+
+
+          {showSuggestions && suggestions.length > 0 && (
+            <div className="suggestion-section">
+              {suggestions.map((event) => (
+                <div
+                  key={event.id}
+                  className="suggestion-item"
+                  onClick={() => handleSuggestionClickName(event)}
+                >
+                  {event.name}
+                </div>
+              ))}
+            </div>
+          )}
 
           <button className="search-button" onClick={handleSearchClick}>
             Search
           </button>
 
           {/* Butonul pentru dropdown */}
-          
+
           <div className="filter-dropdown">
-        <button className="filter-button">☰</button>
-        <div className="filter-content">
-          <div onClick={() => handleFilterSelect('categorie')}>
-            <button className={`filter-option-button ${selectedFilter === 'categorie' ? 'selected' : ''}`}>
-              Categorie
-            </button>
+            <button className="filter-button">☰</button>
+            <div className="filter-content">
+              <div onClick={() => handleFilterSelect('categorie')}>
+                <button className={`filter-option-button ${selectedFilter === 'categorie' ? 'selected' : ''}`}>
+                  Categorie
+                </button>
+              </div>
+
+              {showMiniSearch && (
+                <div className="sub-options-cat">
+                  <input
+                    type="text"
+                    placeholder="Type here"
+                    className="mini-search-input"
+                    value={miniSearchInput}
+                    onChange={(e) => setMiniSearchInput(e.target.value)}
+                  />
+                  <button className="mini-search-button" onClick={handleSearchChangeCategory}>
+                    🔍
+                  </button>
+                </div>
+              )}
+
+
+              <div onClick={() => handleFilterSelect('data')}>
+                <button className={`filter-option-button ${selectedFilter === 'data' ? 'selected' : ''}`}>
+                  Data
+                </button>
+              </div>
+              {showMiniSearch && (
+                <div className="sub-options">
+                  <input
+                    type="text"
+                    placeholder="Type here"
+                    className="mini-search-input"
+                    value={miniSearchInput}
+                    onChange={(e) => setMiniSearchInput(e.target.value)}
+                  />
+                  <button className="mini-search-button" onClick={handleMiniSearch}>
+                    🔍
+                  </button>
+                </div>
+              )}
+
+
+              <div onClick={() => handleFilterSelect('locatie')}>
+                <button className={`filter-option-button ${selectedFilter === 'locatie' ? 'selected' : ''}`}>
+                  Locație
+                </button>
+              </div>
+
+              {showMiniSearch && (
+                <div className="sub-options">
+                  <input
+                    type="text"
+                    placeholder="Type here"
+                    className="mini-search-input"
+                    value={miniSearchInput}
+                    onChange={(e) => setMiniSearchInput(e.target.value)}
+                  />
+                  <button className="mini-search-button" onClick={handleMiniSearch}>
+                    🔍
+                  </button>
+                </div>
+              )}
+
+
+
+            </div>
           </div>
 
-          {showMiniSearch && (
-            <div className="sub-options-cat">
-              <input
-                type="text"
-                placeholder="Type here"
-                className="mini-search-input"
-                value={miniSearchInput}
-                onChange={(e) => setMiniSearchInput(e.target.value)}
-              />
-              <button className="mini-search-button" onClick={handleSearchChangeCategory}>
-                🔍
-              </button>
-            </div>
-          )}
-
-
-          <div onClick={() => handleFilterSelect('data')}>
-            <button className={`filter-option-button ${selectedFilter === 'data' ? 'selected' : ''}`}>
-              Data
-            </button>
-          </div>
-          {showMiniSearch && (
-            <div className="sub-options">
-              <input
-                type="text"
-                placeholder="Type here"
-                className="mini-search-input"
-                value={miniSearchInput}
-                onChange={(e) => setMiniSearchInput(e.target.value)}
-              />
-              <button className="mini-search-button" onClick={handleMiniSearch}>
-                🔍
-              </button>
-            </div>
-          )}
-
-
-          <div onClick={() => handleFilterSelect('locatie')}>
-            <button className={`filter-option-button ${selectedFilter === 'locatie' ? 'selected' : ''}`}>
-              Locație
-            </button>
-          </div>
-
-          {showMiniSearch && (
-            <div className="sub-options">
-              <input
-                type="text"
-                placeholder="Type here"
-                className="mini-search-input"
-                value={miniSearchInput}
-                onChange={(e) => setMiniSearchInput(e.target.value)}
-              />
-              <button className="mini-search-button" onClick={handleMiniSearch}>
-                🔍
-              </button>
-            </div>
-          )}
-
-
-          
-        </div>
-      </div>
-          
         </div>
         <ul>
-        {isLoggedIn ? (
-           <li>
-    
-            <div className="profile-section">
-            {profileImage && (
-        <img
-          src={profileImage}
-          alt="Profile"
-          className="profile-image"
-          onLoad={handleImageLoad}
-        />
-        
-      )}
-      
-            <span className="greeting">Hi, {username}! :) </span>
-            <button className="logout-button" onClick={handleLogoutClick}>Log Out</button>
-          </div>
-          <div>
-            {/* Adăugați iconița sau butonul de chat aici */}
-            {/* Puteți folosi o iconiță sau un buton pentru a deschide fereastra de chat */}
-            <button className="chat-button" onClick={() => handleOrganizationSelect(selectedOrganization)}>
-           🗨️ Chat
-            </button>
-            {/* Adăugare componenta FullScreenChat */}
-            {isChatOpen && (
-              <FullScreenChat
-                isLoggedIn={isLoggedIn}
-                organizations={organizations}
-                onClose={handleCloseChat}
-              />
-            )}
-          
-          </div>
-         </li>
-         
-        ) : (
-          <li className="login-button" onClick={handleLoginClick}>
-  <ReactRouterLink to="/login" target="_self"  className="login-link">Log In</ReactRouterLink>
-</li>
-          
-        )}
-      </ul>
+          {isLoggedIn ? (
+            <li>
+
+              <div className="profile-section">
+                {profileImage && (
+                  <img
+                    src={profileImage}
+                    alt="Profile"
+                    className="profile-image"
+                    onLoad={handleImageLoad}
+                  />
+
+                )}
+
+                <span className="greeting">Hi, {username}! :) </span>
+                <button className="logout-button" onClick={handleLogoutClick}>Log Out</button>
+              </div>
+              <div>
+                {/* Adăugați iconița sau butonul de chat aici */}
+                {/* Puteți folosi o iconiță sau un buton pentru a deschide fereastra de chat */}
+                <button className="chat-button" onClick={() => handleOrganizationSelect(selectedOrganization)}>
+                  🗨️ Chat
+                </button>
+                {/* Adăugare componenta FullScreenChat */}
+                {isChatOpen && (
+                  <FullScreenChat
+                    isLoggedIn={isLoggedIn}
+                    organizations={organizations}
+                    onClose={handleCloseChat}
+                  />
+                )}
+
+              </div>
+            </li>
+
+          ) : (
+            <li className="login-button" onClick={handleLoginClick}>
+              <ReactRouterLink to="/login" target="_self" className="login-link">Log In</ReactRouterLink>
+            </li>)}
+        </ul>
 
         <span onClick={toggleTheme} className="button">
           💡
         </span>
-      
+
       </div>
     </div>
-    
+
   );
 };
 

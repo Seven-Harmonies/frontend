@@ -11,6 +11,7 @@
     "fs": "^0.0.1-security",
     "query-string": "^8.1.0",
     "react": "^18.2.0",
+    "react-chat-engine": "^1.11.28",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.20.1",
