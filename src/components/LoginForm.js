@@ -41,29 +41,10 @@ const LoginForm = ({ isShowLogin }) => {
   const handleLoginClick = async () => {
     try {
       
-      //await handleLogin(username, password);
-      const volunteer = {
-        username: username,
-        email: email,
-        phoneNumber: phoneNumber,
-        password: password,
-      };
-  
-      const response = await fetch('http://your-spring-boot-app/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(volunteer),
-      });
-  
-      const data = await response.json();
-      // Handle the response from the server
-      console.log(data);
-  
-      // Return data or perform additional actions if needed
-      return data;
-    
+    await handleLogin(username, password);
+    //console.log('Am ajuns aici cu usernameu: ', username, ' si parola: ', password);
+    //console.log(data);
+      
     } catch (error) {
       // Handle errors from handleLogin
       console.error('Error in handleLogin:', error);

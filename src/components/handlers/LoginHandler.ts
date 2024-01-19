@@ -1,28 +1,26 @@
 
 export const handleLogin = async (username: string, password: string) => {
-    try {
-      const loginData = {
-        username: username,
-        password: password,
-      };
+    try { 
       
-      const response = await fetch('/loginVolunteer', {
+      console.log('Am ajuns aici cu usernameu: ', username, ' si parola: ', password);
+      const response = await fetch('http://localhost:8081/api/loginVolunteer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(loginData),
+        body: JSON.stringify({username, password}),
       });
   
-      const data = await response.json();
+      //const data = await response.json();
       
-      console.log(data);
+      //console.log(data);
   
       // Return data or perform additional actions if needed
-      return data;
+      //return data;
     } catch (error) {
       // Handle errors
       console.error('Error:', error);
+      
       throw error; // Rethrow the error to propagate it to the calling component
     }
   };

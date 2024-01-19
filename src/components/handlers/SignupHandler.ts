@@ -1,5 +1,5 @@
 // signupHandler.ts
-export const handleSignUp = async (username: string, email: string, phoneNumber: string, password: string) => {
+const handleSignUp = async (username: string, email: string, phoneNumber: string, password: string) => {
     try {
       const volunteer = {
         username: username,
