@@ -1,4 +1,4 @@
-const VolunteerSignUpValidator = async (username: string, email: string, phoneNumber: string, password: string, first_name: string, last_name: string, photos: string) => {
+export const VolunteerSignUpValidator = async (username: string, email: string, phoneNumber: string, password: string, first_name: string, last_name: string, photos: string) => {
     try {
         //Validare campuri goale
         if (!username || !email || !phoneNumber || !password || !first_name || !photos || !last_name) {

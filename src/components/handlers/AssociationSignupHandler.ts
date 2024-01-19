@@ -1,3 +1,5 @@
+import { AssociationSignUpValidator } from "../validators/AssociationSignUpValidator";
+
 const AssociationSignUpHandler = async (username: string, email: string, phoneNumber: string, password: string, name: string, photos: string) => {
 
   try {

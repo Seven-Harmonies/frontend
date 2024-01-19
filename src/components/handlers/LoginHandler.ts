@@ -1,12 +1,12 @@
 
-const handleLogin = async (username: string, password: string) => {
+export const handleLogin = async (username: string, password: string) => {
     try {
       const loginData = {
         username: username,
         password: password,
       };
       
-      const response = await fetch('http://localhost:3000/user', {
+      const response = await fetch('/loginVolunteer', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

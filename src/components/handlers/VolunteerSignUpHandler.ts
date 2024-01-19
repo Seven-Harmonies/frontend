@@ -1,3 +1,5 @@
+import { VolunteerSignUpValidator } from "../validators/VolunteerSignUpValidator";
+
 const VolunteerSignUpHandler = async (username: string, email: string, phoneNumber: string, password: string, first_name: string, last_name: string, photos: string) => {
 
     try {
