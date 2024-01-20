@@ -9,20 +9,21 @@ import './HomePage.css';
 import EventProfile from '../components/EventProfile';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import EventDisplay from '../components/events/EventDisplay';
+import PostsFeed from '../components/PostsFeed';
 
 
 
-const HomePage = ({event}) =>{
-/*
-  const joinLink = `/evenimente/${event.name}`;
-
-  const [isJoined, setIsJoined] = useState(false);
-*/
+const HomePage = ({ event }) => {
+  /*
+    const joinLink = `/evenimente/${event.name}`;
+  
+    const [isJoined, setIsJoined] = useState(false);
+  */
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  
+
   const [darkTheme, setDarkTheme] = useState(false);
 
 
@@ -35,19 +36,19 @@ const HomePage = ({event}) =>{
   const handleLoginClick = () => {
     setIsShowLogin((isShowLogin) => !isShowLogin);
   };*/
- 
+
   const openNewTab = (url) => {
-      window.open(url, '_blank');
-    };
+    window.open(url, '_blank');
+  };
 
 
 
-    return (
+  return (
 
     /*</div>
     <NavBar handleLoginClick={handleLoginClick} toggleTheme={toggleTheme} darkTheme={darkTheme}>
     <LoginForm isShowLogin={isShowLogin} />*/
-    
+
     <div className={`App ${darkTheme ? 'dark-theme' : 'light-theme'}`}>
       <div>
         <NavbarRouter toggleTheme={toggleTheme} darkTheme={darkTheme} />
@@ -56,7 +57,7 @@ const HomePage = ({event}) =>{
         <div className="events-container">
           {AllEvents.map((event) => (
             <div key={event.id} className="event-card">
-              
+
               <div className="event-details">
                 <ReactRouterLink to={`/evenimente/${event.name}`} className="event-name">
                   {event.name}
@@ -68,6 +69,7 @@ const HomePage = ({event}) =>{
               <img src={event.coverPhoto} alt={event.name} className="event-image" />
             </div>
           ))}
+          <PostsFeed></PostsFeed>
         </div>
 
         <Body />
