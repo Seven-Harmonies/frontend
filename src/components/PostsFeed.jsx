@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import CardPost from './CardPost';
-
+import CardPost from './CardPost'
 const PostsFeed = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-        // Fetch posts from the backend and update the state
         const fetchPosts = async () => {
             try {
                 const response = await fetch('http://localhost:8081/api/posts/getPosts');
