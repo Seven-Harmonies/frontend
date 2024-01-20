@@ -10,6 +10,11 @@ const FullScreenChat = ({ isLoggedIn, organizations, onClose }) => {
     setSelectedOrganization(organizationId);
   };
 
+  const handleGoToChatClick = () => {
+    // Deschide fereastra de chat când se apasă butonul "Go to chat"
+    setSelectedOrganization(organizations[0].id); // Setează prima organizație
+  };
+
   return (
     <div className="full-screen-chat-overlay">
       <div className="full-screen-chat-container">
@@ -22,20 +27,15 @@ const FullScreenChat = ({ isLoggedIn, organizations, onClose }) => {
             organizations={organizations}
             selectedOrganization={selectedOrganization}
             onClose={onClose}
+            initialMessage="Send a text"
           />
         ) : (
           <div className="chat-organizations">
-            <h2>Select an organization:</h2>
-            <ul>
-              {organizations.map((organization) => (
-                <li
-                  key={organization.id}
-                  onClick={() => handleOrganizationSelect(organization.id)}
-                >
-                  {organization.name}
-                </li>
-              ))}
-            </ul>
+
+            {/* Înlocuiește lista cu un buton "Go to chat" */}
+            <button className="go-to-chat-button" onClick={handleGoToChatClick}>
+              Go to chat
+            </button>
           </div>
         )}
       </div>

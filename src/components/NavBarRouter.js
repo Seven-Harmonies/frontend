@@ -8,15 +8,13 @@ import SearchSuggestions from './SearchSuggestions.js';
 import Chat from './Chat'; // Importați componenta Chat
 import FullScreenChat from './FullScreenChat';
 import './NavBarRouter.css';
-import { isLoggedInAssociation, handleLoginAsAssociation } from './handlers/LoginHandlerAsAssociation.ts';
-import { useAuth } from '../AuthentificationContext.js';
 
 
 const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions }) => {
   const [searchInput, setSearchInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [loggedInAssociation, setLoggedInAssociation] = useState(false)
+  const [isLoggedInAssociation, setLoggedInAssociation] = useState(false)
   const [username, setUsername] = useState('')
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [selectedSubOption, setSelectedSubOption] = useState(null);
@@ -40,34 +38,30 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
     setIsChatOpen(false);
   };
 
-
-  const storedIsLoggedInAssociation = localStorage.getItem('isLoggedInAssociation');
-  console.log(storedIsLoggedInAssociation)
-
-
   const handleImageLoad = () => {
     console.log('Imagine încărcată cu succes!');
   };
-
 
   useEffect(() => {
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     const storedUsername = localStorage.getItem('username');
     const storedProfileImage = localStorage.getItem('profileImage');
-
+    const storedIsLoggedInAssociation = localStorage.getItem('isLoggedInAssociation');
+    //console.log(storedIsLoggedInAssociation)
 
     if (storedIsLoggedIn && storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
-      if (storedIsLoggedInAssociation === false)
-        setLoggedInAssociation(false)
-      else
-        setLoggedInAssociation(true)
+      if (storedIsLoggedInAssociation === false) {
+        setLoggedInAssociation(false);
+      }
+      else { setLoggedInAssociation(true); }
 
       if (storedProfileImage) {
         setProfileImage(storedProfileImage);
       }
     }
+
   }, []);
 
   const handleOrganizationSelect = (organizationId) => {
@@ -276,7 +270,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
           <li className="login-button">
             <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
           </li>
-          {storedIsLoggedInAssociation ? (
+          {isLoggedInAssociation ? (
             <li className="login-button">
               <ReactRouterLink to="/addEvent" target="_self" className="login-link"> Add Events</ReactRouterLink>
             </li>

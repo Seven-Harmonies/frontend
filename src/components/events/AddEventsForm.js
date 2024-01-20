@@ -5,10 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import NavbarRouter from '../NavBarRouter';
 
 const AddEventsForm = () => {
-    const [eventName, setEventName] = useState('');
-    const [eventDate, setEventDate] = useState('');
-    const [eventDescription, setEventDescription] = useState('');
-
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
@@ -42,9 +38,6 @@ const AddEventsForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (validateForm()) {
-            //const newEvent = { ...formData };
-            //updateEvents(newEvent);
-            //console.log('Form Data:', newEvent)
             console.log('Form Data:', formData)
             setFormData({
                 name: '',
