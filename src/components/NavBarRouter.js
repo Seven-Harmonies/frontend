@@ -12,8 +12,7 @@ import { isLoggedInAssociation, handleLoginAsAssociation } from './handlers/Logi
 import { useAuth } from '../AuthentificationContext.js';
 
 
-const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
-  const { logout } = useAuth();
+const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions }) => {
   const [searchInput, setSearchInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -27,6 +26,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
   const [miniSearchInput, setMiniSearchInput] = useState('');
 
   const [showMiniSearch, setShowMiniSearch] = useState(false);
+  const [selectedFilterButton, setSelectedFilterButton] = useState(null);
 
   const [showUsername, setShowUsername] = useState(false);
 
@@ -119,7 +119,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
 
   const handleSearchChangeDate = (event) => {
     const searchTerm = event.target.value;
-    setSearchInput(searchTerm);
+    setMiniSearchInput(searchTerm);
 
     // Filter events based on the search term for date
     const filteredEvents = AllEvents.filter((event) =>
@@ -133,9 +133,11 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
     setShowSuggestions(searchTerm !== '');
   };
 
+
+
   const handleSearchChangeLocation = (event) => {
     const searchTerm = event.target.value;
-    setSearchInput(searchTerm);
+    setMiniSearchInput(searchTerm);
 
     // Filter events based on the search term for location
     const filteredEvents = AllEvents.filter((event) =>
@@ -151,8 +153,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
 
   const handleSearchChangeCategory = (event) => {
     const searchTerm = event.target.value;
-    setSearchInput(searchTerm);
-
+    setMiniSearchInput(searchTerm);
     // Filter events based on the search term for category
     const filteredEvents = AllEvents.filter((event) =>
       event.category.toLowerCase().includes(searchTerm.toLowerCase())
@@ -170,36 +171,45 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
 
   const handleSearchClick = () => {
     // Check if there's a search input
-    if (searchInput.trim() !== '') {
+    if (searchInput.trim() !== '' || miniSearchInput.trim() !== '') {
       // Use encodeURIComponent to handle special characters in the search input
-      const encodedSearchTerm = encodeURIComponent(searchInput.trim());
-      // Navigate to EventsPage with the search parameter
+      const encodedSearchTerm = encodeURIComponent(
+        showMiniSearch ? miniSearchInput.trim() : searchInput.trim()
+      );      // Navigate to EventsPage with the search parameter
       navigate(`/evenimente?search=${encodedSearchTerm}`);
     } else {
       // If no search input, navigate to the default events page
       navigate('/evenimente');
     }
+    setSearchInput('');
+    setMiniSearchInput('');
+
   };
 
-  const handleMiniSearch = () => {
-    // Check if there's a mini-search input
+  const handleMiniSearchClick = (selectedEvent) => {
+    // Check if there's a mini search input
     if (miniSearchInput.trim() !== '') {
-      // Use encodeURIComponent to handle special characters in the mini-search input
-      const encodedMiniSearchTerm = encodeURIComponent(miniSearchInput.trim());
-
-      // Navigate to EventsPage with the search parameter based on the selected filter
-      navigate(`/evenimente?search=${encodedMiniSearchTerm}&filter=${selectedFilter}`);
+      // Use encodeURIComponent to handle special characters in the mini search input
+      const encodedSearchTerm = encodeURIComponent(miniSearchInput.trim());
+      // Navigate to EventsPage with the search parameter
+      navigate(`/evenimente/${encodedSearchTerm}`);
     } else {
-      // If no mini-search input, navigate to the default events page
+      // If no mini search input, navigate to the default events page
       navigate('/evenimente');
     }
+    setMiniSearchInput('');
   };
+
+
+
 
   const handleFilterSelect = (filter) => {
     setSelectedFilter(filter);
-    setSelectedSubOption(null); // Resetează sub-opțiunile atunci când se schimbă filtrele
+    setSelectedSubOption(null);
     setMiniSearchInput('');
     setShowMiniSearch(true);
+    // Set the selected filter button
+    setSelectedFilterButton(filter);
   };
 
   const handleSubOptionSelect = (subOption) => {
@@ -282,10 +292,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
             className="search-input"
             value={searchInput}
             onChange={handleSearchChangeName}
-
           />
-
-
           {showSuggestions && suggestions.length > 0 && (
             <div className="suggestion-section">
               {suggestions.map((event) => (
@@ -309,24 +316,40 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
           <div className="filter-dropdown">
             <button className="filter-button">☰</button>
             <div className="filter-content">
+
               <div onClick={() => handleFilterSelect('categorie')}>
                 <button className={`filter-option-button ${selectedFilter === 'categorie' ? 'selected' : ''}`}>
                   Categorie
                 </button>
               </div>
 
-              {showMiniSearch && (
+              {selectedFilterButton === 'categorie' && showMiniSearch && (
                 <div className="sub-options-cat">
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="mini-search-input"
-                    value={miniSearchInput}
-                    onChange={(e) => setMiniSearchInput(e.target.value)}
-                  />
-                  <button className="mini-search-button" onClick={handleSearchChangeCategory}>
-                    🔍
-                  </button>
+                  <div className="search-input-container">
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="search-input"
+                      value={miniSearchInput}
+                      onChange={handleSearchChangeCategory}
+                    />
+                    <button className="mini-search-button" onClick={handleMiniSearchClick}>
+                      🔍
+                    </button>
+                  </div>
+                  {showSuggestions && suggestions.length > 0 && (
+                    <div className="suggestion-section-mini">
+                      {suggestions.map((event) => (
+                        <div
+                          key={event.id}
+                          className="suggestion-item-mini"
+                          onClick={() => handleSuggestionClickName(event)}
+                        >
+                          {event.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -336,18 +359,33 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
                   Data
                 </button>
               </div>
-              {showMiniSearch && (
-                <div className="sub-options">
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="mini-search-input"
-                    value={miniSearchInput}
-                    onChange={(e) => setMiniSearchInput(e.target.value)}
-                  />
-                  <button className="mini-search-button" onClick={handleMiniSearch}>
-                    🔍
-                  </button>
+              {selectedFilterButton === 'data' && showMiniSearch && (
+                <div className="sub-options-data">
+                  <div className="search-input-container">
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="search-input"
+                      value={miniSearchInput}
+                      onChange={handleSearchChangeDate}
+                    />
+                    <button className="mini-search-button" onClick={handleSearchChangeDate}>
+                      🔍
+                    </button>
+                  </div>
+                  {showSuggestions && suggestions.length > 0 && (
+                    <div className="suggestion-section-mini">
+                      {suggestions.map((event) => (
+                        <div
+                          key={event.id}
+                          className="suggestion-item-mini"
+                          onClick={() => handleSuggestionClickDate(event)}
+                        >
+                          {event.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -358,21 +396,35 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
                 </button>
               </div>
 
-              {showMiniSearch && (
-                <div className="sub-options">
-                  <input
-                    type="text"
-                    placeholder="Type here"
-                    className="mini-search-input"
-                    value={miniSearchInput}
-                    onChange={(e) => setMiniSearchInput(e.target.value)}
-                  />
-                  <button className="mini-search-button" onClick={handleMiniSearch}>
-                    🔍
-                  </button>
+              {selectedFilterButton === 'locatie' && showMiniSearch && (
+                <div className="sub-options-loc">
+                  <div className="search-input-container">
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="search-input"
+                      value={miniSearchInput}
+                      onChange={handleSearchChangeLocation}
+                    />
+                    <button className="mini-search-button" onClick={handleSearchChangeLocation}>
+                      🔍
+                    </button>
+                  </div>
+                  {showSuggestions && suggestions.length > 0 && (
+                    <div className="suggestion-section-mini">
+                      {suggestions.map((event) => (
+                        <div
+                          key={event.id}
+                          className="suggestion-item-mini"
+                          onClick={() => handleSuggestionClickLocation(event)}
+                        >
+                          {event.name}
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
-
 
 
             </div>
