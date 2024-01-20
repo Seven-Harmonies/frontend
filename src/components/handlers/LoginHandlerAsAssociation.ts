@@ -1,4 +1,3 @@
-export let isLoggedInAssociation = false;
 
 export const handleLoginAsAssociation = async (username: string, password: string) => {
     try {
@@ -12,14 +11,12 @@ export const handleLoginAsAssociation = async (username: string, password: strin
 
         if (response.ok) {
             const data = await response.json();
-            console.log(data.userName)
             // Check if data exists in the response
             if (data) {
-                isLoggedInAssociation = true;
-                return data;
+
+                return true;
             } else {
-                // If data doesn't exist or there's an error, return an error message
-                return { error: 'Invalid credentials. Please check your username and password.' };
+                return false
             }
         }
     } catch (error) {

@@ -3,9 +3,17 @@ import React, { useState } from 'react';
 import handleSignUp from './handlers/SignupHandler.ts';
 import handleLoginAsVolunteer from './handlers/LoginHandlerAsVolunteer.ts'
 import handleLoginAsAssociation from './handlers/LoginHandlerAsAssociation.ts'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthentificationContext.js'
 
-const LoginForm = ({ isShowLogin }) => {
+
+const LoginForm = ({ isShowLogin, userName }) => {
+  // const { username, setUsername, login } = useAuth();
+
   const [username, setUsername] = useState('');
+
+  const navigate = useNavigate();
+  // const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
@@ -38,18 +46,35 @@ const LoginForm = ({ isShowLogin }) => {
     setShowSignUpModal(false);
   };
 
-  const handleLoginClickAsVolunteer = (e) => {
+  const handleLoginClickAsVolunteer = async (e) => {
     try {
       e.preventDefault()
-      handleLoginAsVolunteer(username, password);
+      const response = await handleLoginAsVolunteer(username, password);
+      if (response) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', username);
+        localStorage.setItem('isLoggedInAssociation', false)
+      }
+
+
+
     } catch (error) {
       console.error('Error in handleLogin:', error);
     }
+    navigate('/homepage');
   };
 
-  const handleLoginClickAsAssociation = (e) => {
-    e.preventDefault();
-    handleLoginAsAssociation(username, password);
+  const handleLoginClickAsAssociation = async (e) => {
+    e.preventDefault()
+    const response = await handleLoginAsAssociation(username, password);
+    if (response) {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', username);
+      localStorage.setItem('isLoggedInAssociation', true)
+    }
+
+    navigate('/homepage');
+
   };
 
   const handleSignUpClick = async () => {

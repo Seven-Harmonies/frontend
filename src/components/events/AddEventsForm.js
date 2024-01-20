@@ -1,9 +1,21 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './AddEventForm.css';
+import './AddEventsForm.css';
+import { useNavigate } from 'react-router-dom';
+import NavbarRouter from '../NavBarRouter';
 
-const OrganizationForm = ({ closeModal }) => {
+const AddEventsForm = ({ updateEvents }) => {
+
+    const [darkTheme, setDarkTheme] = useState(false);
+
+    const toggleTheme = () => {
+        setDarkTheme(prevDarkTheme => !prevDarkTheme);
+        const body = document.querySelector("body");
+        body.style.backgroundColor = darkTheme ? "#fff" : "#333";
+    };
+
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         date: '',
@@ -14,6 +26,8 @@ const OrganizationForm = ({ closeModal }) => {
         coverPhoto: null,
         otherImages: [],
     });
+
+    const [formErrors, setFormErrors] = useState({});
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -32,73 +46,153 @@ const OrganizationForm = ({ closeModal }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form Data:', formData);
-        closeModal();
-        setFormData({
-            name: '',
-            date: '',
-            location: '',
-            description: '',
-            organizer: '',
-            category: '',
-            coverPhoto: null,
-            otherImages: [],
-        });
+        if (validateForm()) {
+            //const newEvent = { ...formData };
+            //updateEvents(newEvent);
+            //console.log('Form Data:', newEvent)
+            console.log('Form Data:', formData)
+            setFormData({
+                name: '',
+                date: '',
+                location: '',
+                description: '',
+                organizer: '',
+                category: '',
+                coverPhoto: null,
+                otherImages: [],
+            });
+            navigate('/evenimente');
+        }
+    };
+
+
+    const validateForm = () => {
+        // Add your validation logic here
+        const errors = {};
+
+        if (!formData.name.trim()) {
+            errors.name = 'Name is required';
+        }
+
+        if (!formData.date.trim()) {
+            errors.date = 'Date is required';
+        }
+
+        if (!formData.location.trim()) {
+            errors.location = 'Location is required';
+        }
+
+        if (!formData.category.trim()) {
+            errors.category = 'Category is required';
+        }
+
+        setFormErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
+    const handleClose = () => {
+        navigate('/homepage');
     };
 
     return (
-        <Router>
-            <Switch>
-                <Route path="/addEvent" component={OrganizationForm} />
-                <Modal isOpen={true} onRequestClose={closeModal}>
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            Name:
-                            <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Date:
-                            <input type="date" name="date" value={formData.date} onChange={handleInputChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Location:
-                            <input type="text" name="location" value={formData.location} onChange={handleInputChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Description:
-                            <textarea name="description" value={formData.description} onChange={handleInputChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Organizer:
-                            <input type="text" name="organizer" value={formData.organizer} onChange={handleInputChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Category:
-                            <input type="text" name="category" value={formData.category} onChange={handleInputChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Cover Photo:
-                            <input type="file" accept="image/*" onChange={handleCoverPhotoChange} />
-                        </label>
-                        <br />
-                        <label>
-                            Other Images:
-                            <input type="file" accept="image/*" multiple onChange={handleOtherImagesChange} />
-                        </label>
-                        <br />
-                        <button type="submit">Submit</button>
-                    </form>
-                    <button onClick={closeModal}>Close</button>
-                </Modal>
-            </Switch>
-        </Router>
+        <div>
+            <NavbarRouter toggleTheme={toggleTheme} darkTheme={darkTheme} />
+            <Modal isOpen={true} onRequestClose={handleClose} >
+                <div className={`App ${darkTheme ? 'dark-theme' : 'light-theme'}`}>
+                    <div className="form-container">
+                        <h2>Add Event</h2>
+                        <form onSubmit={handleSubmit}>
+                            <label>
+                                Name:
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                />
+                                {formErrors.name && <span className="error">{formErrors.name}</span>}
+                            </label>
+                            <label>
+                                Date:
+                                <input
+                                    type="date"
+                                    name="date"
+                                    value={formData.date}
+                                    onChange={handleInputChange}
+                                />
+                                {formErrors.date && <span className="error">{formErrors.date}</span>}
+                            </label>
+                            <br />
+                            <label>
+                                Location:
+                                <input
+                                    type="text"
+                                    name="location"
+                                    value={formData.location}
+                                    onChange={handleInputChange}
+                                />
+                                {formErrors.location && <span className="error">{formErrors.location}</span>}
+                            </label>
+                            <br />
+                            <label>
+                                Description:
+                                <textarea
+                                    name="description"
+                                    value={formData.description}
+                                    onChange={handleInputChange}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Organizer:
+                                <input
+                                    type="text"
+                                    name="organizer"
+                                    value={formData.organizer}
+                                    onChange={handleInputChange}
+                                />
+                            </label>
+                            <br />
+                            <label>
+                                Category:
+                                <input
+                                    type="text"
+                                    name="category"
+                                    value={formData.category}
+                                    onChange={handleInputChange}
+                                />
+                                {formErrors.category && <span className="error">{formErrors.category}</span>}
+                            </label>
+                            <br />
+
+                            <label>
+                                Cover Photo:
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleCoverPhotoChange}
+                                />
+                            </label>
+
+                            <label>
+                                Other Images:
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    multiple
+                                    onChange={handleOtherImagesChange}
+                                />
+                            </label>
+
+                            <button type="submit">Submit</button>
+
+                            <button onClick={handleClose}>Close</button>
+                        </form>
+                    </div>
+                </div>
+            </Modal >
+        </div >
     );
 };
 
-export default OrganizationForm;
+export default AddEventsForm;
