@@ -3,8 +3,10 @@ import React, { useState } from 'react';
 import handleSignUp from './handlers/SignupHandler.ts';
 import handleLoginAsVolunteer from './handlers/LoginHandlerAsVolunteer.ts'
 import handleLoginAsAssociation from './handlers/LoginHandlerAsAssociation.ts'
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({ isShowLogin }) => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -44,6 +46,7 @@ const LoginForm = ({ isShowLogin }) => {
     } catch (error) {
       console.error('Error in handleLogin:', error);
     }
+    navigate('/homepage');
   };
 
   const handleLoginClickAsAssociation = (e) => {

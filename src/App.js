@@ -1,11 +1,10 @@
-// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import EventsPage from './pages/EventsPage';
 import HomePage from './pages/HomePage';
 import NavbarRouter from "./components/NavBarRouter";
 import LoginForm from "./components/LoginForm";
-
+import AddEventsForm from './components/events/AddEventsForm';
 import EventDisplay from './components/events/EventDisplay';
 
 export default function App() {
@@ -22,6 +21,7 @@ export default function App() {
           <Route path="/homepage" element={<HomePage />} />
 
           <Route path="/login" element={<LoginForm />} />
+          <Route path="/addEvent" element={<AddEventsForm />} />
 
         </Routes>
       </Router>
