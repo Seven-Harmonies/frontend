@@ -47,19 +47,12 @@ const LoginForm = ({ isShowLogin, userName }) => {
   };
 
   const handleLoginClickAsVolunteer = async (e) => {
-    try {
-      e.preventDefault()
-      const response = await handleLoginAsVolunteer(username, password);
-      if (response) {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('username', username);
-        localStorage.setItem('isLoggedInAssociation', false)
-      }
-
-
-
-    } catch (error) {
-      console.error('Error in handleLogin:', error);
+    e.preventDefault()
+    const response = await handleLoginAsVolunteer(username, password);
+    if (response) {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', username);
+      localStorage.setItem('association', 'false')
     }
     navigate('/homepage');
   };
@@ -70,7 +63,7 @@ const LoginForm = ({ isShowLogin, userName }) => {
     if (response) {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('username', username);
-      localStorage.setItem('isLoggedInAssociation', true)
+      localStorage.setItem('association', 'true')
     }
 
     navigate('/homepage');
