@@ -8,6 +8,7 @@ import SearchSuggestions from './SearchSuggestions.js';
 import Chat from './Chat'; // Importați componenta Chat
 import FullScreenChat from './FullScreenChat';
 import './NavBarRouter.css';
+import { isLoggedInAssociation, handleLoginAsAssociation } from './handlers/LoginHandlerAsAssociation.ts';
 
 
 const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions }) => {
@@ -20,14 +21,16 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
   const [miniSearchInput, setMiniSearchInput] = useState('');
-  
+
   const [showMiniSearch, setShowMiniSearch] = useState(false);
   const [selectedFilterButton, setSelectedFilterButton] = useState(null);
+
+  const [showUsername, setShowUsername] = useState(false);
 
 
   const [profileImage, setProfileImage] = useState(null);
   const [selectedOrganization, setSelectedOrganization] = useState(null);
-  const [showSuggestions, setShowSuggestions]=useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
 
   const handleCloseChat = () => {
@@ -35,27 +38,27 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
   };
 
 
-const handleImageLoad = () => {
-  console.log('Imagine încărcată cu succes!');
-};
+  const handleImageLoad = () => {
+    console.log('Imagine încărcată cu succes!');
+  };
 
-  
-  
-  useEffect(() => {
-    // Verifică dacă utilizatorul este autentificat la încărcarea componentei
-    const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    const storedUsername = localStorage.getItem('username');
-    const storedProfileImage = localStorage.getItem('profileImage');
 
-  if (storedIsLoggedIn && storedUsername) {
-    setIsLoggedIn(true);
-    setUsername(storedUsername);
 
-    if (storedProfileImage) {
-      setProfileImage(storedProfileImage);
-    }
-  }
-  }, []);
+  // useEffect(() => {
+  //   // Verifică dacă utilizatorul este autentificat la încărcarea componentei
+  //   // const storedIsLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  //   // const storedUsername = localStorage.getItem('username');
+  //   // const storedProfileImage = localStorage.getItem('profileImage');
+
+  //   if (storedIsLoggedIn && storedUsername) {
+  //     setIsLoggedIn(true);
+  //     setUsername(storedUsername);
+
+  //     if (storedProfileImage) {
+  //       setProfileImage(storedProfileImage);
+  //     }
+  //   }
+  // }, []);
 
   const handleOrganizationSelect = (organizationId) => {
     // Implementează logica pentru gestionarea selecției organizației și deschiderea chat-ului
@@ -63,9 +66,9 @@ const handleImageLoad = () => {
     setSelectedOrganization(organizationId);
     setIsChatOpen(true);
   };
-  
-  
- 
+
+
+
 
   const handleLoginClick = () => {
     navigate('/login');
@@ -85,23 +88,23 @@ const handleImageLoad = () => {
   };
 
   //SEARCH DUPA NUME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  
+
   const handleSearchChangeName = (event) => {
     const searchTerm = event.target.value;
     setSearchInput(searchTerm);
-  
+
     // Filter events based on the search term for name
     const filteredEvents = AllEvents.filter((event) =>
       event.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
   const handleSearchChangeDate = (event) => {
     const searchTerm = event.target.value;
     setMiniSearchInput(searchTerm);
@@ -110,10 +113,10 @@ const handleImageLoad = () => {
     const filteredEvents = AllEvents.filter((event) =>
       event.date.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
@@ -128,14 +131,14 @@ const handleImageLoad = () => {
     const filteredEvents = AllEvents.filter((event) =>
       event.location.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
   const handleSearchChangeCategory = (event) => {
     const searchTerm = event.target.value;
     setMiniSearchInput(searchTerm);   
@@ -143,14 +146,14 @@ const handleImageLoad = () => {
     const filteredEvents = AllEvents.filter((event) =>
       event.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     // Update search suggestions
     setSuggestions(filteredEvents);
-  
+
     // Show suggestions only when there is a search term
     setShowSuggestions(searchTerm !== '');
   };
-  
+
 
 
 
@@ -221,7 +224,7 @@ const handleImageLoad = () => {
     setShowSuggestions(false);
   };
 
-  const handleSuggestionClickCategory= (selectedEvent) => {
+  const handleSuggestionClickCategory = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.category}`);
     // Clear the search query and suggestions when an event is selected
     setSearchInput("");
@@ -230,7 +233,7 @@ const handleImageLoad = () => {
     setShowSuggestions(false);
   };
 
-  const handleSuggestionClickLocation= (selectedEvent) => {
+  const handleSuggestionClickLocation = (selectedEvent) => {
     navigate(`/evenimente/${selectedEvent.location}`);
     // Clear the search query and suggestions when an event is selected
     setSearchInput("");
@@ -255,12 +258,17 @@ const handleImageLoad = () => {
 
       <div className='flex-section'>
         <ul>
-        <li className="login-button">
-  <ReactRouterLink to="/homepage" target="_self" className="login-link">Home</ReactRouterLink>
-</li>
-<li className="login-button">
-  <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
-</li>
+          <li className="login-button">
+            <ReactRouterLink to="/homepage" target="_self" className="login-link">Home</ReactRouterLink>
+          </li>
+          <li className="login-button">
+            <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
+          </li>
+          {isLoggedInAssociation && (
+            <li className="login-button">
+              <ReactRouterLink to="/addEvent" target="_self" className="login-link"> Add Events</ReactRouterLink>
+            </li>
+          )}
         </ul>
       </div>
 
@@ -292,7 +300,7 @@ const handleImageLoad = () => {
           </button>
 
           {/* Butonul pentru dropdown */}
-          
+
           <div className="filter-dropdown">
         <button className="filter-button">☰</button>
         <div className="filter-content">
@@ -412,56 +420,54 @@ const handleImageLoad = () => {
           
         </div>
         <ul>
-        {isLoggedIn ? (
-           <li>
-    
-            <div className="profile-section">
-            {profileImage && (
-        <img
-          src={profileImage}
-          alt="Profile"
-          className="profile-image"
-          onLoad={handleImageLoad}
-        />
-        
-      )}
-      
-            <span className="greeting">Hi, {username}! :) </span>
-            <button className="logout-button" onClick={handleLogoutClick}>Log Out</button>
-          </div>
-          <div>
-            {/* Adăugați iconița sau butonul de chat aici */}
-            {/* Puteți folosi o iconiță sau un buton pentru a deschide fereastra de chat */}
-            <button className="chat-button" onClick={() => handleOrganizationSelect(selectedOrganization)}>
-           🗨️ Chat
-            </button>
-            {/* Adăugare componenta FullScreenChat */}
-            {isChatOpen && (
-              <FullScreenChat
-                isLoggedIn={isLoggedIn}
-                organizations={organizations}
-                onClose={handleCloseChat}
-              />
-            )}
-          
-          </div>
-         </li>
-         
-        ) : (
-          <li className="login-button" onClick={handleLoginClick}>
-  <ReactRouterLink to="/login" target="_self"  className="login-link">Log In</ReactRouterLink>
-</li>
-          
-        )}
-      </ul>
+          {isLoggedIn ? (
+            <li>
+
+              <div className="profile-section">
+                {profileImage && (
+                  <img
+                    src={profileImage}
+                    alt="Profile"
+                    className="profile-image"
+                    onLoad={handleImageLoad}
+                  />
+
+                )}
+
+                <span className="greeting">Hi, {username}! :) </span>
+                <button className="logout-button" onClick={handleLogoutClick}>Log Out</button>
+              </div>
+              <div>
+                {/* Adăugați iconița sau butonul de chat aici */}
+                {/* Puteți folosi o iconiță sau un buton pentru a deschide fereastra de chat */}
+                <button className="chat-button" onClick={() => handleOrganizationSelect(selectedOrganization)}>
+                  🗨️ Chat
+                </button>
+                {/* Adăugare componenta FullScreenChat */}
+                {isChatOpen && (
+                  <FullScreenChat
+                    isLoggedIn={isLoggedIn}
+                    organizations={organizations}
+                    onClose={handleCloseChat}
+                  />
+                )}
+
+              </div>
+            </li>
+
+          ) : (
+            <li className="login-button" onClick={handleLoginClick}>
+              <ReactRouterLink to="/login" target="_self" className="login-link">Log In</ReactRouterLink>
+            </li>)}
+        </ul>
 
         <span onClick={toggleTheme} className="button">
           💡
         </span>
-      
+
       </div>
     </div>
-    
+
   );
 };
 

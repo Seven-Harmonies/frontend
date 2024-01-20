@@ -1,4 +1,4 @@
-const AssociationSignUpValidator = async (username: string, email: string, phoneNumber: string, password: string, name: string, photos: string) => {
+export const AssociationSignUpValidator = async (username: string, email: string, phoneNumber: string, password: string, name: string, photos: string) => {
     try {
         //Validare campuri goale
         if (!username || !email || !phoneNumber || !password || !name || !photos) {

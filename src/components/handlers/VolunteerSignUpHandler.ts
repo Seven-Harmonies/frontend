@@ -1,3 +1,5 @@
+import { VolunteerSignUpValidator } from "../validators/VolunteerSignUpValidator";
+
 const VolunteerSignUpHandler = async (username: string, email: string, phoneNumber: string, password: string, first_name: string, last_name: string, photos: string) => {
 
     try {
@@ -18,7 +20,7 @@ const VolunteerSignUpHandler = async (username: string, email: string, phoneNumb
             photos: photos
         };
 
-        const response = await fetch('http://your-spring-boot-app/api/signup', {
+        const response = await fetch('http://localhost:8081/registerVolunteer', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
