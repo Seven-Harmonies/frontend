@@ -9,8 +9,6 @@
   padding: 10px;
 }
 
-
-
 .message {
   margin-bottom: 8px;
 }
@@ -35,7 +33,7 @@ input[type="text"] {
 }
 
 .chat-button:hover {
-  background-color: #49be57;
+  background-color: #49a749;
 }
 
 .profile-section {
@@ -57,7 +55,7 @@ input[type="text"] {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #fff;
+  background-color: grey;
   /* sau orice altă culoare de fundal dorită */
   display: flex;
   flex-direction: column;
@@ -67,7 +65,7 @@ input[type="text"] {
   padding: 10px;
   background-color: #4267b2;
   /* sau orice altă culoare pentru antetul chat-ului */
-  color: #fff;
+  color: grey;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -92,13 +90,31 @@ input[type="text"] {
   flex: 1;
   padding: 5px;
   margin-right: 10px;
+  color: black;
 }
 
 .chat-input button {
   padding: 5px 10px;
   background-color: #4267b2;
   /* sau orice altă culoare pentru butonul Send */
-  color: #fff;
+  color: white;
   border: none;
   cursor: pointer;
+}
+
+.ce-message-username {
+  color: black !important;
+  /* !important is used to override existing styles */
+}
+
+.ce-person-container {
+  color: black;
+}
+
+.ce-section-title-container {
+  color: black;
+}
+
+.ce-options-drop-down {
+  color: black;
 }

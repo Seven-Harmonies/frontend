@@ -6,174 +6,99 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   display: center;
   justify-content: center;
   align-items: center;
 }
 
 .full-screen-chat-container {
-  background-color: white;
-  padding: 20px;
+  background: grey;
   border-radius: 8px;
-  width: 80%;
-  max-width: 600px;
-  max-height: 80vh;
-  /* Setează înălțimea maximă la 80% din înălțimea vizibilă a ecranului */
-  overflow-y: auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   position: relative;
-}
-
-.chat-messages {
-  max-height: calc(80vh - 50px);
-  /* Ajustează înălțimea maximă a mesajelor pentru a face loc butonului "X" */
-  overflow-y: auto;
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  padding: 8px;
-  background-color: #ff5252;
-  color: white;
+  background: none;
   border: none;
-  border-radius: 4px;
+  font-size: 18px;
   cursor: pointer;
-  z-index: 1;
-  /* Asigură că butonul "X" este vizibil deasupra mesajelor */
-}
-
-
-.full-screen-chat-content {
-  position: relative;
+  color: #333;
+  width: 50px;
+  height: 50px;
 }
 
 .chat-organizations {
-  margin-bottom: 20px;
-}
-
-.chat-organizations ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.chat-organizations li {
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  margin-bottom: 4px;
-}
-
-.chat-organizations li:hover {
-  background-color: #eee;
-}
-
-.selected {
-  background-color: #49be57;
-  color: white;
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  padding: 8px;
-  background-color: #ff5252;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-
-.full-screen-chat {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 600px;
-  overflow-y: auto;
-}
-
-.chat-organizations {
-  margin-bottom: 20px;
-}
-
-.chat-organizations ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.chat-organizations li {
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 4px;
-  margin-bottom: 4px;
-}
-
-.chat-organizations li:hover {
-  background-color: #eee;
-}
-
-.selected {
-  background-color: #49be57;
-  color: white;
-}
-
-
-
-.message {
-  margin-bottom: 8px;
-}
-
-.full-screen-chat form {
   display: flex;
-  margin-top: 10px;
+  flex-direction: column;
+  align-items: center;
 }
 
-.full-screen-chat input {
-  flex: 1;
-  padding: 8px;
-  margin-right: 8px;
-}
-
-.full-screen-chat button {
-  padding: 8px 16px;
-  background-color: #49a749;
+.go-to-chat-button {
+  background-color: #4caf50;
   color: white;
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.full-screen-chat button:hover {
-  background-color: #49be57;
+.go-to-chat-button:hover {
+  background-color: #45a049;
+}
+
+/* Add more styles as needed for your Chat component and other elements */
+
+.full-screen-chat-container {
+  background: grey;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 .close-button {
   position: absolute;
   top: 10px;
   right: 10px;
-  padding: 8px;
-  background-color: #ff5252;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: #333;
+  background-color: red;
+}
+
+
+.chat-organizations {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.go-to-chat-button {
+  background-color: #4caf50;
   color: white;
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
-.open-chat-button {
-  padding: 8px 16px;
-  background-color: #49a749;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+.go-to-chat-button:hover {
+  background-color: #45a049;
 }
 
-.open-chat-button:hover {
-  background-color: #49be57;
+.ChatEngine__chat-feed-message-username {
+  color: #3498db;
+  /* Change this to the desired color for user names */
 }
+
+/* Add more styles as needed for your Chat component and other elements */
