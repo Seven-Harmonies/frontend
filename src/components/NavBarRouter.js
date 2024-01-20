@@ -381,7 +381,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch }) => {
 
                 )}
 
-                <span className="greeting">Hi, {username}! :) </span>
+                <span className="greeting">Hi, {username}! : </span>
                 <button className="logout-button" onClick={handleLogoutClick}>Log Out</button>
               </div>
               <div>

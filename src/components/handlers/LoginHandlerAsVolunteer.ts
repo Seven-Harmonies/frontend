@@ -10,11 +10,17 @@ export const handleLoginAsVolunteer = async (username: string, password: string)
       body: JSON.stringify({ username, password }),
     });
 
-    const data = await response.json();
-
-
-    // Return data or perform additional actions if needed
-    return data;
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data.userName)
+      // Check if data exists in the response
+      if (data) {
+        return data;
+      } else {
+        // If data doesn't exist or there's an error, return an error message
+        return { error: 'Invalid credentials. Please check your username and password.' };
+      }
+    }
   } catch (error) {
     // Handle errors
     console.error('Error:', error);

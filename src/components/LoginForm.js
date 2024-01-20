@@ -40,6 +40,7 @@ const LoginForm = ({ isShowLogin }) => {
 
   const handleLoginClickAsVolunteer = (e) => {
     try {
+      e.preventDefault()
       handleLoginAsVolunteer(username, password);
     } catch (error) {
       console.error('Error in handleLogin:', error);
