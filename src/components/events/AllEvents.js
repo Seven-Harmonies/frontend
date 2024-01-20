@@ -62,6 +62,19 @@ const AllEvents = [
       category:"alimente",
       coverPhoto: "/images/10.jpg"
     },
+
+    {
+      id: 6,
+      name: 'test',
+      date: '3 iulie 2024',
+      location: 'City Park',
+      description: '"O simplă donație poate aduce bucurie în inimile celor aflați în nevoie."',
+      participants: 30,
+      images: ['/images/alimente-pungimancare.jpg','/images/alimente.jpg','/images/alimente-distribuire.jpg'],
+      organizer:'Alba-Ca-Zapada',
+      category:"alimente",
+      coverPhoto: "/images/10.jpg"
+    }
     // Adaugă alte evenimente aici
   ];
 
