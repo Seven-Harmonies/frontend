@@ -1,4 +1,3 @@
-export let isLoggedInAssociation = false;
 
 export const handleLoginAsAssociation = async (username: string, password: string) => {
     try {
@@ -12,25 +11,17 @@ export const handleLoginAsAssociation = async (username: string, password: strin
 
         if (response.ok) {
             const data = await response.json();
-
             // Check if data exists in the response
             if (data) {
-                isLoggedInAssociation = true;
-                return data;
-            } //else {
-            // If data doesn't exist or there's an error, return an error message
-            //return { error: 'Invalid credentials. Please check your username and password.' };
+
+                return true;
+            } else {
+                return false
+            }
         }
-        //} else if (response.status === 401) {
-        // Unauthorized access, return a specific error message
-        //return { error: 'Unauthorized access. Please check your username and password.' };
-        //} else {
-        //return null;
-        //}
     } catch (error) {
-        // Handle other errors
         console.error('Error:', error);
-        throw error; // Rethrow the error to propagate it to the calling component
+        throw error;
     }
 };
 export default handleLoginAsAssociation;

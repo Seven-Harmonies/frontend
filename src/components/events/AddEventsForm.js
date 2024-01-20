@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './AddEventsForm.css';
 import { useNavigate } from 'react-router-dom';
-import NavbarRouter from 'C:/Users/ASUS/Desktop/frontend/src/components/NavBarRouter.js';
+import NavbarRouter from '../NavBarRouter';
 
 const AddEventsForm = () => {
     const [eventName, setEventName] = useState('');

@@ -10,11 +10,17 @@ export const handleLoginAsVolunteer = async (username: string, password: string)
       body: JSON.stringify({ username, password }),
     });
 
-    const data = await response.json();
+    if (response.ok) {
+      const data = await response.json();
+      // Check if data exists in the response
+      if (data) {
 
-
-    // Return data or perform additional actions if needed
-    return data;
+        return true;
+      } else {
+        // If data doesn't exist or there's an error, return an error message
+        return false;
+      }
+    }
   } catch (error) {
     // Handle errors
     console.error('Error:', error);
