@@ -14,7 +14,9 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
   const [searchInput, setSearchInput] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isLoggedInAssociation, setLoggedInAssociation] = useState(false)
+  const [association, setAssociation] = useState(
+    localStorage.getItem('association') === 'true'
+  );
   const [username, setUsername] = useState('')
   const [selectedFilter, setSelectedFilter] = useState(null);
   const [selectedSubOption, setSelectedSubOption] = useState(null);
@@ -46,23 +48,23 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
     const storedIsLoggedIn = localStorage.getItem('isLoggedIn');
     const storedUsername = localStorage.getItem('username');
     const storedProfileImage = localStorage.getItem('profileImage');
-    const storedIsLoggedInAssociation = localStorage.getItem('isLoggedInAssociation');
-    //console.log(storedIsLoggedInAssociation)
+    const storedAssociation = localStorage.getItem('association');
+
+
 
     if (storedIsLoggedIn && storedUsername) {
       setIsLoggedIn(true);
       setUsername(storedUsername);
-      if (storedIsLoggedInAssociation === false) {
-        setLoggedInAssociation(false);
-      }
-      else { setLoggedInAssociation(true); }
-
+      if (storedAssociation)
+        setAssociation(storedAssociation)
       if (storedProfileImage) {
         setProfileImage(storedProfileImage);
       }
     }
 
   }, []);
+
+  console.log(association)
 
   const handleOrganizationSelect = (organizationId) => {
     // Implementează logica pentru gestionarea selecției organizației și deschiderea chat-ului
@@ -83,8 +85,8 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
     // Șterge informațiile despre utilizator din localStorage la deconectare
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
-    localStorage.removeItem('isLoggedInAssociation')
-    setLoggedInAssociation(false)
+    localStorage.removeItem('association')
+    setAssociation(false)
     setIsLoggedIn(false);
     setProfileImage(null);
     setSelectedOrganization(null);
@@ -270,7 +272,7 @@ const NavbarRouter = ({ toggleTheme, darkTheme, onSearch, showFilterSuggestions 
           <li className="login-button">
             <ReactRouterLink to="/evenimente" target="_self" className="login-link"> Events</ReactRouterLink>
           </li>
-          {isLoggedInAssociation ? (
+          {association === 'true' ? (
             <li className="login-button">
               <ReactRouterLink to="/addEvent" target="_self" className="login-link"> Add Events</ReactRouterLink>
             </li>
