@@ -85,5 +85,4 @@ const AllEvents = [
   },
   // Adaugă alte evenimente aici
 ];
-
 export default AllEvents;

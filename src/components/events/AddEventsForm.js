@@ -4,15 +4,10 @@ import './AddEventsForm.css';
 import { useNavigate } from 'react-router-dom';
 import NavbarRouter from 'C:/Users/ASUS/Desktop/frontend/src/components/NavBarRouter.js';
 
-const AddEventsForm = ({ updateEvents }) => {
-
-    const [darkTheme, setDarkTheme] = useState(false);
-
-    const toggleTheme = () => {
-        setDarkTheme(prevDarkTheme => !prevDarkTheme);
-        const body = document.querySelector("body");
-        body.style.backgroundColor = darkTheme ? "#fff" : "#333";
-    };
+const AddEventsForm = () => {
+    const [eventName, setEventName] = useState('');
+    const [eventDate, setEventDate] = useState('');
+    const [eventDescription, setEventDescription] = useState('');
 
     const navigate = useNavigate();
 
@@ -93,7 +88,13 @@ const AddEventsForm = ({ updateEvents }) => {
     const handleClose = () => {
         navigate('/homepage');
     };
+    const [darkTheme, setDarkTheme] = useState(false);
 
+    const toggleTheme = () => {
+        setDarkTheme(prevDarkTheme => !prevDarkTheme);
+        const body = document.querySelector("body");
+        body.style.backgroundColor = darkTheme ? "#fff" : "#333";
+    };
     return (
         <div>
             <NavbarRouter toggleTheme={toggleTheme} darkTheme={darkTheme} />
